@@ -1,0 +1,141 @@
+---
+title: "Big Data and Machine Learning for Applied Economics"
+subtitle: "Lecture 1: Introduction"
+author: "Ignacio Sarmiento-Barbieri"
+date: "Universidad de los Andes | [ECON-4676](https://github.com/)" #"`r format(Sys.time(), '%d %B %Y')`"
+output:
+  xaringan::moon_reader:
+    #css: [default, metropolis, metropolis-fonts] 
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(knitr)
+opts_chunk$set(
+  fig.align="center",  
+  fig.height=4, #fig.width=6,
+  # out.width="748px", #out.length="520.75px",
+  dpi=300, #fig.path='Figs/',
+  cache=T#, echo=F, warning=F, message=F
+  )
+local({r <- getOption("repos"); r["CRAN"] <- "http://cran.r-project.org"; options(repos=r)}) #set repo
+pkg<-list("dplyr","fontawesome")
+lapply(pkg, require, character.only=T)
+rm(pkg)
+
+```
+
+# Table of contents
+
+1. [Prologue](#prologue)
+
+2. [Syllabus highlights](#syllabus)
+
+3. [Getting started](#started)
+
+4. [R for data science](#r4ds)
+
+5. [Data visualization with ggplot2](#ggplot2)
+
+
+---
+class: inverse, center, middle
+name: prologue
+
+# Prologue
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
+
+---
+
+# Introductions
+
+### Course
+
+`r fa('globe')` https://github.com/econ-4676-uniandes
+
+You'll soon receive an invitation for this semester's copy of the repo where we: 
+  - submit assignments, 
+  - upload presentations, etc.
+
+--
+
+### Me
+
+`r fa('address-book')` [Ignacio Sarmiento Barbieri](https://ignaciomsarmiento.github.io/)
+
+`r fa('envelope')` [ignaciomsarmiento@gmail.com](mailto:ignaciomsarmiento@gmail.com)
+
+`r fa('graduation-cap')` Assistant Professor 
+
+--
+
+### You
+
+A quick roundtable 
+    - Name
+    - fields/interests
+    - coding background.
+
+
+---
+class: inverse, center, middle
+name: syllabus
+
+# Syllabus highlights
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
+
+(Read the full document [here](https://github.com/uo-ec607/syllabus/blob/master/syllabus.pdf).)
+
+---
+
+# Why this course?
+
+Step forward and sideways from traditional standard econometrics
+
+- Bridge between *Economists* Lingo and ML *Lingo*
+- Think as a ISLR/Elements but for economists
+
+
+--
+
+> *"In short, we will cover things that I wish someone had taught me when I was starting out in graduate
+school."*
+
+---
+
+# You, at the end of this course
+
+<div align="center">
+<img src="pics/awesome.jpg">
+</div>
+
+---
+# Grading
+
+| Component                             | Weight |
+|:-|-:|
+| 4 × Assignmets  (10% each)             | 40% |
+| Project Proposal                		   | 20% |
+| Participation (includes presentations) | 10% |
+| Final Exam                             | 30% |
+
+- You can swap out one homework assignment for an (approved) final presentation of your own research.
+- [Short presentations](https://github.com/uo-ec607/presentations) summarize either a key lecture reading, or an (approved) software package/platform.
+- We'll get to OSS contribution later in the course, but this year I'm particularly encouraging contributions to [LOST](lost-stats.github.io/).
+
+--
+
+</br>
+
+
+
+---
+
+Al principio va a parecer un curso 
