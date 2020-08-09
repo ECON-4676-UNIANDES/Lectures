@@ -932,7 +932,7 @@ invgr        0.29399791  0.1100050  2.6725870 0.03187991
 unemp        0.09552687  0.1505735  0.6344201 0.54597347</code></pre>
 <p>Another nice thing about R is that you can create your own function and create a loop. For example,</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a>    download&lt;-<span class="cf">function</span>(x,folder){</span>
-<span id="cb92-2"><a href="#cb92-2"></a>        URL&lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;https://github.com/ECON-4676-UNIANDES/lectures/tree/master/Lecture1/Data&quot;</span>,folder,x,<span class="dt">sep=</span><span class="st">&#39;/&#39;</span>)</span>
+<span id="cb92-2"><a href="#cb92-2"></a>        URL&lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;https://github.com/ECON-4676-UNIANDES/lectures/tree/master/E-TA/Data&quot;</span>,folder,x,<span class="dt">sep=</span><span class="st">&#39;/&#39;</span>)</span>
 <span id="cb92-3"><a href="#cb92-3"></a>       destfile &lt;-<span class="st"> </span><span class="kw">paste</span>(folder, x, <span class="dt">sep=</span><span class="st">&#39;/&#39;</span>)</span>
 <span id="cb92-4"><a href="#cb92-4"></a>       <span class="kw">download.file</span>(URL,destfile)    </span>
 <span id="cb92-5"><a href="#cb92-5"></a>    }</span></code></pre></div>
