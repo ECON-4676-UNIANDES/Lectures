@@ -4,5 +4,5 @@
 
 ## Lecture outline and quicklinks
 
-1. Introduction \[[Slides](https://github.com/ECON-4676-UNIANDES/lectures/blob/master/Lecture1/Lecture1.pdf)\]
+1. Introduction \[[Slides](https://github.com/ECON-4676-UNIANDES/lectures/blob/master/Lecture1/Lecture1.pdf)\] \[[Link Clase Zoom](https://www.dropbox.com/sh/zkpkfgjs0k34b44/AAB6wo5YB-IFiEMGx6QmpH5Ra?dl=0)]\
 
