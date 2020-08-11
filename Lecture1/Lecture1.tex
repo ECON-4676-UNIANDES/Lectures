@@ -164,23 +164,121 @@
   \bigskip
 \end{itemize}
 
+\end{frame}
+%----------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Motivación}
+\framesubtitle{La primera victoria y derrota del Big Data}
+
+\begin{itemize}
+  \item Contexto ?`similar? al de hoy: Epidemia de la gripe A en 2009
+  \medskip
+  \item En EEUU la forma de monitorear es a través de reportes de la CDC 
+  \medskip
+  \item La CDC agrega a nivel de ciudad, condado, estado, región y a nivel nacional
+  \medskip
+  \item Todo esto llevaba aproximadamente 10 dias $\rightarrow$ demasiado tiempo para una epidemia
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Motivación}
+\framesubtitle{Google se ha unido a la conversación}
+
+\begin{itemize}
+  \item Google propuso un mecanismo ingenioso: {\bf Google Flu Trends}
+  \bigskip
+  \item Punto de partida: 
+  \begin{itemize}
+    \item Proporcion de visitas semanales por Gripe A en hospitales 
+    \item 9 regiones $\times$ 5 años (2003-2007) = $2,340$ datos
+    \item Estos son los datos que tomaban 10 dias en elaborarse (comparemos con la Colombia de 2009)
+  \end{itemize}
+  \bigskip
+  \item Google cruzó estos datos con las busquedas sobre la gripe A
+  \bigskip
+  \item Con estos datos, construyeron un modelo para predecir intensidad de gripe A  
+\end{itemize}  
 
 \end{frame}
 
+%----------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Motivación}
+\framesubtitle{Google se ha unido a la conversación}
+
+\begin{itemize}
+  \item Un solo modelo?
+  \bigskip
+  \item Los investigadores de Google estimaron {\bf 450 millones} de models
+  \bigskip
+  \item Eligieron el que mejor predice sobe la intensidad de busqueda
+  \bigskip
+  \item Les permite tener informacion diaria, semanal o mensual para cualquier punto de EEUU y el mundo
+  \bigskip
+  \item A Google le toma 1 dia lo que a la CDC 10!
+\end{itemize}  
+\end{frame}
+
+
+
+%----------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Motivación}
+\framesubtitle{Google se ha unido a la conversación}
+\begin{figure}[H] \centering
+            \captionsetup{justification=centering}  
+            \includegraphics[scale=0.45]{figures/flu_trends}
+    \end{figure}
+\end{frame}
+
+
+%----------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Motivación}
+\framesubtitle{El rey ha muerto, larga vida al rey}
+  \begin{itemize}
+    \item Qué tienen en común Google Flu y Elvis?
+    \bigskip
+    \begin{itemize}
+      \item Abanderados de la revolución
+      \medskip
+      \item Definió y redefinió las reglas sistemáticas para hallar la solución a un problema
+      \medskip
+      \item Éxito rotundo $\rightarrow$ Publicacion en Nature! \url{https://www.nature.com/articles/nature07634}
+      \medskip
+      \item Pero como a Elvis el éxito fue efímero
+      \medskip
+      \item La predicciones comenzaron a sobre-estimar considerablemente la incidencia de la gripe A
+      \medskip
+      \item Google Flu esta ahora archivado (disponible al publico)
+      \medskip
+      \item Continúa recolectando datos pero solo algunas instituciones científicas tienen accesso 
+    \end{itemize}  
+  \end{itemize}  
+\end{frame}
+%----------------------------------------------------------------------%
 
 \begin{frame}
 \frametitle{Motivación}
 
 \begin{itemize}
-      \item El aprendizaje de maquinas se hizo una realidad cuando los investigadores dejaron de afrontarlo de manera teorica y lo hicieron empíricamente.
-      \item Por ejemplo, los algoritmos de reconocimiento de cara: 
+      \item Otro ejemplo, los algoritmos de reconocimiento de cara: 
       \medskip
       \begin{itemize}
         \item no son reglas fijas basadas en que los humanos entendemos por rostros y a partir de ello buscar combinaciones de pixeles.
         \item son algoritmos que usan datos de fotos etiquetadas con un rostro y estiman una funcion $f(x)$ que predice si es un rostro o no a partir de pixeles x.
       \end{itemize}
       \medskip
-      \item  Esta similitud con la econometría plantea interrogantes:
+      \item El aprendizaje de maquinas se hizo una realidad cuando los investigadores dejaron de afrontarlo de manera teórica y lo hicieron empíricamente.
+      \medskip
+      \item  Las similitudes con la econometría plantea interrogantes:
       \begin{itemize}
       \item  ¿Estos algoritmos están simplemente aplicando técnicas estándar a nuevos y grandes conjuntos de datos? 
       \item  Si hay herramientas empíricas fundamentalmente nuevas, ¿cómo encajan con lo que conocemos? 
@@ -570,6 +668,24 @@ Total                &                    & 100\%        \\
   \end{itemize}
 
 
+\end{frame}
+
+
+\section{Para seguir leyendo }
+
+\begin{frame}
+\frametitle{Para seguir leyendo}
+
+\begin{itemize}
+  \item Einav, Liran, and Jonathan D. Levin. The data revolution and economic analysis. No. w19035. National Bureau of Economic Research, 2013.
+  \bigskip
+  \item Mullainathan, S. and Spiess, J., 2017. Machine learning: an applied econometric approach. Journal of Economic Perspectives, 31(2), pp.87-106.
+  \bigskip
+  \item Sosa Escudero, W. (2019). Big Data. Siglo Veintiuno Editores
+  \bigskip
+  \item Varian, Hal R. Big Data: New Tricks for Econometrics. Journal of Economic Perspectives 28, no. 2 (2014): 3-28.
+
+\end{itemize}
 \end{frame}
 
 \end{document}
