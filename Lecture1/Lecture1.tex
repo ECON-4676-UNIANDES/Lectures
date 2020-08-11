@@ -1,0 +1,575 @@
+\documentclass[
+  shownotes,
+  xcolor={svgnames},
+  hyperref={colorlinks,citecolor=DarkBlue,linkcolor=DarkRed,urlcolor=DarkBlue}
+  ]{beamer}
+\usepackage{animate}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{mathpazo}
+%\usepackage{xcolor}
+\usepackage{multimedia}
+\usepackage{fancybox}
+\usepackage[para]{threeparttable}
+\usepackage{multirow}
+\setcounter{MaxMatrixCols}{30}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{lscape}
+\usepackage[compatibility=false,font=small]{caption}
+\usepackage{booktabs}
+\usepackage{ragged2e}
+\usepackage{chronosys}
+\usepackage{appendixnumberbeamer}
+\usepackage{animate}
+\setbeamertemplate{caption}[numbered]
+\usepackage{color}
+%\usepackage{times}
+\usepackage{tikz}
+\usepackage{comment} %to comment
+%% BibTeX settings
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\bibpunct{(}{)}{,}{a}{,}{,}
+\setbeamertemplate{bibliography item}{[\theenumiv]}
+
+% Defines columns for bespoke tables
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+\usepackage{xfrac}
+
+
+\usepackage{multicol}
+\setlength{\columnsep}{0.5cm}
+
+% Theme and colors
+\usetheme{Boadilla}
+
+% I use steel blue and a custom color palette. This defines it.
+\definecolor{andesred}{HTML}{af2433}
+
+% Other options
+\providecommand{\U}[1]{\protect\rule{.1in}{.1in}}
+\usefonttheme{serif}
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{enumerate items}[square]
+\setbeamertemplate{section in toc}[circle]
+
+\makeatletter
+
+\definecolor{mybackground}{HTML}{82CAFA}
+\definecolor{myforeground}{HTML}{0000A0}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=red}
+\setbeamercolor{example text}{fg=black}
+
+\setbeamercolor{background canvas}{fg=myforeground, bg=white}
+\setbeamercolor{background}{fg=myforeground, bg=mybackground}
+
+\setbeamercolor{palette primary}{fg=black, bg=gray!30!white}
+\setbeamercolor{palette secondary}{fg=black, bg=gray!20!white}
+\setbeamercolor{palette tertiary}{fg=white, bg=andesred}
+
+\setbeamercolor{frametitle}{fg=andesred}
+\setbeamercolor{title}{fg=andesred}
+\setbeamercolor{block title}{fg=andesred}
+\setbeamercolor{itemize item}{fg=andesred}
+\setbeamercolor{itemize subitem}{fg=andesred}
+\setbeamercolor{itemize subsubitem}{fg=andesred}
+\setbeamercolor{enumerate item}{fg=andesred}
+\setbeamercolor{item projected}{bg=gray!30!white,fg=andesred}
+\setbeamercolor{enumerate subitem}{fg=andesred}
+\setbeamercolor{section number projected}{bg=gray!30!white,fg=andesred}
+\setbeamercolor{section in toc}{fg=andesred}
+\setbeamercolor{caption name}{fg=andesred}
+\setbeamercolor{button}{bg=gray!30!white,fg=andesred}
+
+\makeatother
+
+
+%%%%%%%%%%%%%%% BEGINS DOCUMENT %%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Lecture 0: Introducción}
+\subtitle{Big Data and Machine Learning for Applied Economics \\ Econ 4676}
+\date{\today}
+
+\author[Sarmiento-Barbieri]{Ignacio Sarmiento-Barbieri}
+\institute[Uniandes]{Universidad de los Andes}
+
+
+\begin{frame}[noframenumbering]
+\maketitle
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       Motivation              %
+% What is the question?
+% Why do we care?
+% What is new?
+% What do you find?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{frame}
+\frametitle{Agenda}
+
+\tableofcontents
+
+
+\end{frame}
+
+
+
+%%----------------------------------------------------------------------%
+
+\section{Motivación}
+\begin{frame}
+\frametitle{Motivación}
+
+\begin{figure}[H] \centering
+  \captionsetup{justification=centering}  
+    \includegraphics[scale=0.5]{figures/data_everywhere}
+\end{figure}
+
+
+
+\end{frame}
+
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Motivación}
+
+\begin{itemize}
+      \item  Hay datos por todos lados: redes sociales, tarjetas de crédito, teléfonos, relojes, GPS, ....
+      \bigskip
+      \item  Las maquinas estan haciendo cosas "inteligentes":
+      \begin{itemize}
+        \item Facebook te reconoce las caras en las fotos,
+        \item Siri te entiende la voz
+        \item Google es capaz de traducir sitios web
+      \end{itemize}
+  \bigskip
+  \item Todos estos "breakthroughs" son tanto computacionales como estadísticos
+  \bigskip
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Motivación}
+
+\begin{itemize}
+      \item El aprendizaje de maquinas se hizo una realidad cuando los investigadores dejaron de afrontarlo de manera teorica y lo hicieron empíricamente.
+      \item Por ejemplo, los algoritmos de reconocimiento de cara: 
+      \medskip
+      \begin{itemize}
+        \item no son reglas fijas basadas en que los humanos entendemos por rostros y a partir de ello buscar combinaciones de pixeles.
+        \item son algoritmos que usan datos de fotos etiquetadas con un rostro y estiman una funcion $f(x)$ que predice si es un rostro o no a partir de pixeles x.
+      \end{itemize}
+      \medskip
+      \item  Esta similitud con la econometría plantea interrogantes:
+      \begin{itemize}
+      \item  ¿Estos algoritmos están simplemente aplicando técnicas estándar a nuevos y grandes conjuntos de datos? 
+      \item  Si hay herramientas empíricas fundamentalmente nuevas, ¿cómo encajan con lo que conocemos? 
+      \item  Como economistas empíricos, ¿cómo podemos utilizarlas?
+       \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------------------------------%
+
+\section{Presentación: un poco sobre nosotros}
+\begin{frame}
+\frametitle{Presentación: Sobre mi}
+
+  \begin{itemize}
+      \item  Ignacio Sarmiento Barbieri
+      \medskip
+      \item \url{https://ignaciomsarmiento.github.io/}
+      \medskip
+      \item \href{mailto:i.sarmiento@uniandes.edu.co}{i.sarmiento@uniandes.edu.co}
+      \medskip
+      \item Intereses: Economia Publica y Urbana. Economia del Crime. Econometria Aplicada, Big Data y Machine Learning.
+      \medskip
+      \item Originario de Salta, Argentina
+  \end{itemize}
+
+\end{frame}
+
+
+
+%----------------------------------------------------------------------%
+\begin{frame}
+
+\frametitle{Presentación: Sobre mi}
+\begin{itemize}
+    \item Originario de Salta, Argentina
+  \end{itemize}
+
+
+
+\begin{figure}[H] \centering
+  \captionsetup{justification=centering}
+
+  \centering
+  \begin{subfigure}{0.45\linewidth}
+    \centering
+    \includegraphics[scale=0.2]{figures/salta_map}
+  \end{subfigure}
+  \begin{subfigure}{0.45\linewidth}
+    \centering
+    \includegraphics[scale=0.13]{figures/salta1}
+  \end{subfigure}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Presentación: Sobre el profesor asistente del curso}
+
+  \begin{itemize}
+      \item  Jacob Muñoz Castro
+      \medskip
+      \item \href{mailto:j.munoz14@uniandes.edu.co}{j.munoz14@uniandes.edu.co}
+      \medskip
+      \item Intereses: financial economics, misallocation, regulation, econometrics,  big data and machine learning
+      \medskip
+      \item Originario de Armenia, Colombia.
+
+  \end{itemize}
+
+\end{frame}
+
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Presentación: Sobre vos}
+
+    \begin{itemize}
+      \item Nombre
+      \bigskip
+      \item Programa en el que estan inscriptos
+      \bigskip
+      \item Un poco de su "background" 
+      \bigskip
+      \item Perfil de Slack y chat
+    \end{itemize}
+\end{frame}
+
+
+%----------------------------------------------------------------------%
+\section{Housekeeping}
+\begin{frame}
+\frametitle{Clases}
+
+
+    \begin{itemize}
+      \item Horario de Clases: Las clases serán completamente virutales los martes y jueves de 11:30 a 12:45
+      \bigskip
+      \item Zoom link: https://uniandes-edu-co.zoom.us/j/92913017634
+      \bigskip
+      \item Github classrooms \url{https://github.com/ECON-4676-UNIANDES}
+      \begin{itemize}
+        \item Syllabus: \url{https://github.com/ECON-4676-UNIANDES/Syllabus}
+        \item Clases
+        \item Talleres
+        \item Tutoriales (eTAs)
+        \end{itemize}
+      \bigskip
+      \item Comunicacion via \href{https://slack.com/}{Slack}. Si no recibieron el link de la invitación por favor enviarme correo
+    \end{itemize}
+
+
+\end{frame}
+
+%----------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Lenguajes}
+
+
+\begin{minipage}[t]{0.58\linewidth}
+        \begin{itemize}
+            \item Matemáticas
+            \bigskip
+            \item Inglés
+            \bigskip
+            \item Uno de los objetivos implicitos es que mejoren sus habilidades para escribir código y usar herramientas de la industria
+            \begin{itemize}
+              \item Elijan el que quieran: 
+              \begin{itemize}
+                \item \texttt{R}, \texttt{Python}, o cualquier otro
+                \item no hay restricción
+                \item yo me basare en \texttt{R}
+                \end{itemize}
+              \item Github
+              \item AWS
+            \end{itemize}
+            \item Aprender haciendo y mucha prueba y error! 
+            
+        \end{itemize}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.38\linewidth}%
+        \begin{figure}[H] \centering
+            \captionsetup{justification=centering}  
+            \includegraphics[scale=0.2]{figures/ml_trick}
+    \end{figure}
+    \end{minipage}
+
+\end{frame}
+
+%----------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Bibliografía}
+
+
+\begin{enumerate}
+  \item Statistical Learning (FREE!!! speech and beer)
+  \begin{itemize}
+    \small
+    \item James, G., Witten, D., Hastie, T., \& Tibshirani, R. (2013). An introduction to statistical learning (ISLR)
+    \item Hastie, T., Tibshirani, R., \& Friedman, J. (2009). The elements of statistical learning: data mining, inference, and prediction
+    \item Efron, B., \& Hastie, T. (2016). Computer age statistical inference.
+  \end{itemize}
+  \bigskip
+  \item Libros avanzados de econometría
+  \begin{itemize}
+    \small
+    \item Davidson, R., \& MacKinnon, J. G. (2004). Econometric theory and methods 
+    \item Wooldridge, J. M. (2010). Econometric analysis of cross section and panel data. 
+    \item Hayashi, F. (2000). Econometrics
+  \end{itemize}
+\bigskip
+  \item Otros tópicos: bayesiano, econometria espacial, voy a indicar y a actualizar el syllabus
+  \end{enumerate}
+
+
+
+%  \begin{itemize}
+%    \item La idea es movernos hacia adelante y al costado de la econometria de grado
+%    \item Armar un puente entre los Economistas y los Machine Learners, Computer Scientists
+%    \item Pensar el curso como un ISLR/Elements pero para economistas
+%\end{itemize}
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Criterios de evaluación}
+
+\begin{table}[H]
+\begin{tabular}{lcc}
+\hline 
+\hline \\
+Clase   magistral    & Puntaje Individual & Puntaje Total \\
+\hline \\
+Participación        &                    & 10\%          \\
+Talleres             & 10\%               & 40\%          \\
+Propuesta de Trabajo &                    & 25\%          \\
+Primer Entrega       & 5\%                &               \\
+Segunda Entrega      & 5\%                &               \\
+Tercer Entrega       & 15\%               &               \\
+Examen Final         &                    & 25\%          \\
+\hline \\
+Total                &                    & 100\%        \\
+\hline 
+\hline  \\
+\end{tabular}
+\end{table}
+
+
+\end{frame}
+
+
+%----------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Criterios de evaluación}
+
+\begin{itemize}
+\item {\bf Participación (10\%)} $\rightarrow$ ``tiebreaker'' de la nota final. 
+\bigskip
+  \begin{itemize}
+    \item Asistencia a clases: aleatoriamente voy a asignar al menos 4 personas que tengan la camara prendida, voy a mandar mensaje por Slack
+    \bigskip
+    \item Slack: compartir articulos, tutoriales, material relevante para el curso en el canal \#cosas interesantes
+    \bigskip
+    \item Github: Spell check al instructor, sobre todo acentos =), y corregir falacias/errores conceptuales
+    \bigskip
+    \item AWS: credito para que todos tengan su ``nube''
+
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Criterios de evaluación}
+\begin{itemize}
+  \item {\bf Talleres (40\%)}
+  \bigskip
+\begin{itemize}
+  \item Pueden ser en grupos de no mas de 3 personas. 
+  \medskip
+  \item Enviar slack al profe con los miembros del grupo
+  \medskip
+  \item Bonus en participación de la historia del repositorio (evaluar la contribución de cada estudiante).
+  \end{itemize}
+\bigskip
+
+   \item Primer taller $\rightarrow$ fecha de entrega 8 de septiembre antes de la clase (pronto disponible en github)
+   \bigskip
+   \item En clase los estudiantes a designar aleatoriamente los dias previos, presentaran su solución en no mas de 3 slides.
+\end{itemize}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Criterios de evaluación}
+\begin{itemize}
+
+  \item {\bf Propuesta de trabajo  (25\%)}
+  \begin{itemize}
+  \item Pueden ser en grupos de no mas de 3 personas. El mismo o no de los talleres.
+  \end{itemize}
+  \end{itemize}
+     \bigskip
+  \begin{enumerate}
+      
+      \item Primera entrega los grupos se reunirán conmigo y presentarán brevemente (máximo 5 slides) la idea y como planean llevarla a cabo.
+      \begin{itemize}
+        \item Concretar cita con el profesor,
+        \item fecha de entrega: 25 de septiembre
+      \end{itemize}
+  
+     \bigskip
+  \item  Segunda entrega donde se expondrán la idea con los datos propuestos.
+      \begin{itemize}
+        \item Concretar cita con el profesor, 
+        \item fecha de entrega: 23 de octubre
+      \end{itemize}
+      \bigskip
+    \item  Entrega final que consolida todo el trabajo.
+      \begin{itemize}
+        \item fecha de entrega:  17 de diciembre
+        \item Bonus a los estudiantes que además de presentar el plan de trabajo o propuesta, entreguen resultados concretos.
+      \end{itemize}
+\end{enumerate}
+
+
+
+
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Cláusula de ajustes razonables}
+
+\begin{itemize}
+  \footnotesize
+\item  Si lo considera pertinente, siéntase en libertad de informar al profesor lo antes posible si usted tiene alguna condición, visible o invisible, por la cual requiera algún ajuste para estar en igualdad de condiciones con los y las demás estudiantes. Debido a las actuales circunstancias, barreras de conectividad o acceso a los recursos tecnológicos indispensables para la clase son parte de las condiciones que pueden requerir ajustes. Por la misma razón, no necesitará presentar documentación para solicitar esos ajustes.
+
+\item  También lo invitamos a buscar asesoría y apoyo en la Dirección de su programa, en la Decanatura de Estudiantes (http://centrodeconsejeria.uniandes.edu.co, Bloque Ñf, ext. 2207, 2230 y 4967, horario de atención L-V 8:00 a.m. a 5:00 p.m.) o en el Programa de Acción por la Igualdad y la Inclusión Social (PAIIS) de la Facultad de Derecho (paiis@uniandes.edu.co). Si su solicitud se basa en dificultades de acceso a conectividad o tecnología, es particularmente importante que haga este contacto adicional para que pueda acceder a los recursos de apoyo que brinda la Universidad.
+
+\item  Se entiende por ajustes razonables todas "las modificaciones y adaptaciones necesarias y adecuadas que no impongan una carga desproporcionada o indebida, cuando se requieran en un caso particular, para garantizar a las personas con discapacidad el goce o ejercicio, en igualdad de condiciones con las demás, de todos los derechos humanos y libertades fundamentales" Convención sobre los Derechos de las personas con discapacidad, art.2.
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Cláusula de respeto por la diversidad}
+
+\begin{itemize}
+  \footnotesize
+\item  Todos debemos respetar los derechos de quienes hacemos parte de esta comunidad académica. En esta comunidad consideramos inaceptable cualquier situación de acoso, acoso sexual, discriminación, matoneo, y/o amenaza. La persona que se sienta en alguna de estas situaciones puede denunciar su ocurrencia y buscar orientación y apoyo ante alguna de las siguientes instancias: el equipo pedagógico del curso, la Coordinación o la Dirección del programa, la Decanatura de Estudiantes (DECA, Ed. Ñf-Casita amarilla), la Ombudsperson (ombudsperson@uniandes.edu.co, Edificio RGA–Pedro Navas, Of. 201, ext. 5300 y 3933) o el Comité MAAD (lineamaad@uniandes.edu.co, https://uniandes.edu.co/MAAD o a la ext. 2707 o 2230). Si quieren mayor información, guía o necesitan activar el protocolo MAAD pueden acudir a Nancy García (n.garcia@uniandes.edu.co) en la Facultad. También puede acudir a los grupos estudiantiles que pueden ofrecerle apoyo y acompañamiento: No Es Normal (derechoygenero@uniandes.edu.co o https://www.facebook.com/noesnormaluniandes/?fref=ts); Pares de Acompañamiento Contra el Acoso-PACA (paca@uniandes.edu.co o https://www.facebook.com/PACA-1475960596003814/?fref=ts). Para mayor información sobre el protocolo MAAD, puede visitar esta página: https://decanaturadeestudiantes.uniandes.edu.co/index.php/es/sobre-la-decanatura/827
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Política de momentos difíciles}
+
+\begin{itemize}
+\item Todas las personas pueden pasar por un momento difícil que de alguna manera pueda afectar nuestra vida en la Universidad. Pueden ser problemas en casa, con la pareja, incluso estrés por esta u otra materia.
+\medskip
+\item Si usted siente que está pasando por un momento complicado, sin importar el motivo, siéntase con la tranquilidad de hablar con la profesora para pedir tiempo o apoyo. Ningún trabajo o entrega puede sobrepasar su salud mental y física.
+\medskip
+ \item {\bf Su bienestar es lo más importante.}
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------%
+
+\section{Recap}
+\begin{frame}
+\frametitle{Recap}
+
+\begin{itemize} 
+  \item 3 Plataformas
+    \begin{itemize} 
+      \item Curso: Github \url{https://github.com/ECON-4676-UNIANDES}
+      \item Comunicación: Slack
+      \item Play: AWS
+    \end{itemize}
+    \medskip
+    \item Inglés, Estadística, Econometria y mucho coding
+    \medskip
+    \item Participación, prueba y error serán las banderas del curso, armarse de paciencia!
+    \medskip
+    \item No duden en comunicarse conmigo por cualquier tema
+    \begin{itemize} 
+      \item Ajustes razonables, incluyendo problemas de conectividad
+      \item Consultas del curso o de cualquier otra cosa
+      \item Momentos difíciles 
+    \end{itemize}
+    \bigskip
+    \item {\bf Recordar: Tu bienestar es lo más importante!!!}
+\end{itemize}
+\end{frame}
+
+
+
+%----------------------------------------------------------------------%
+
+\section{Next}
+
+\begin{frame}
+\frametitle{Next}
+  
+  \begin{itemize} 
+  \item Tutorial de GitHub
+  \bigskip
+  \item Verificar que tiene instalado el software que usted va a usar en el curso 
+  \medskip
+    \begin{itemize} 
+      \item Voy a usar \texttt{R} con \texttt{RStudio}
+      \medskip
+      \item Usted puede usar el que desee, altamente recomendados son \texttt{R} y \texttt{Python} 
+      \medskip
+      \item Tutorial de R disponible en breve en los e-TAs
+      \medskip
+      \item Sera muy bienvenido y debidamente atribuido si quiere contribuir con un tutorial de \texttt{Python} o ``traducir'' el eTA a \texttt{Python} 
+    \end{itemize}
+  \end{itemize}
+
+
+\end{frame}
+
+\end{document}

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # This is the page for the Lectures for Big Data and Machine Learning for Applied Economics at the ECON 4676  
 ### Check the Syllabus [here](https://github.com/ECON-4676-UNIANDES/Syllabus)
 
