@@ -93,3 +93,8 @@ vignettes/*.pdf
 *.mtc1
 *.out
 *.synctex.gz
+*.fls
+*.snm
+*.nav
+*.fdb_latexmk
+

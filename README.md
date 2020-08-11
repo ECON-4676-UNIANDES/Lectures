@@ -4,5 +4,6 @@
 
 ## Lecture outline and quicklinks
 
-1. Introduction: Motivation \[[Slides](https://github.com/ECON-4676-UNIANDES/lectures/blob/master/Lecture1/Lecture1_slides.html)\]
+1. Introduction \[[Slides](https://github.com/ECON-4676-UNIANDES/lectures/blob/master/Lecture1/Lecture1.pdf)\]
+
 
