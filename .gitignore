@@ -97,4 +97,4 @@ vignettes/*.pdf
 *.snm
 *.nav
 *.fdb_latexmk
-
+*.vrb

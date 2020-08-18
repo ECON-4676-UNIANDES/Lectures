@@ -1,7 +1,7 @@
-##########################################################
-#  Author: Ignacio Sarmiento-Barbieri (ignaciomsarmiento at gmail.com)
+#######################################################################
+#  Author: Ignacio Sarmiento-Barbieri (i.sarmiento at uniandes.edu.co)
 # please do not cite or circulate without permission
-##########################################################
+#######################################################################
 
 #Clean the workspace
 rm(list=ls())
@@ -50,4 +50,5 @@ p3<- p+
   stat_smooth(method="loess", se=FALSE, fill=NA,colour="red",size=1,lty=2) 
 p3
 ggsave("fig_1d.pdf",height = 7, width = 12)
+
 
