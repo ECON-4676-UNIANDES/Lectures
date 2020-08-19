@@ -265,7 +265,7 @@ Thus
 
 \begin{align}
 y_i &= X_i' \beta +u_i  \\ \nonumber
-    &= \sum_{k=1}^k \beta_j X_{ji} +u_i
+    &= \sum_{j=1}^k \beta_j X_{ji} +u_i
 \end{align}
 
 \end{frame}
@@ -631,7 +631,7 @@ and
     \item If model (2) holds, estimating the smaller model (1) leads to a more efficient but biased estimate if $X_1$ is also correlated with the omitted regressor $X_2$. 
   \end{itemize}
   \bigskip
-  \item this discussion of small vs large is always with respect to a model that is supposed to be true.
+  \item This discussion of small vs large is always with respect to a model that is supposed to be true.
   \bigskip
 \item  But in practice the true model is unknown. 
 \bigskip
@@ -706,7 +706,7 @@ and
   \medskip
   \item Two problems with this idea:
   \begin{itemize}
-    \item  The first one is that given an original data set, if part of it is left aside to test the model, less data is left for estimation. 
+    \item  The first one is that given an original data set, if part of it is left aside to test the model, less data is left for estimation (leading to less efficiency). 
     \item A second problem is how to decide which data will be used to train the model and which one to test it. {\tiny (more on how cross validation helps later)}
   \end{itemize}
 \end{itemize}
@@ -799,7 +799,7 @@ The \emph{estimated prediction error} is defined as
 
 \begin{itemize}
   \item Train and Test  samples
-  \item 70\% / 30\% split
+  \item 30\% / 70\% split
 \end{itemize}
 
 \begin{Shaded}
