@@ -150,12 +150,12 @@
         \item Given data  estimate a function $f(x)$ that predicts $y$ from $x$
       \end{itemize}
       \medskip
-      
-      \item  This is basically what we do as economists everyday so: 
+
+      \item  This is basically what we do as economists everyday so:
       \begin{itemize}
-        \item  Are these algorithms merely applying standard techniques to novel and large datasets? 
-        \item  If there are fundamentally new empirical tools, how do they fit with what we know? 
-        \item  As empirical economists, how can we use them? 
+        \item  Are these algorithms merely applying standard techniques to novel and large datasets?
+        \item  If there are fundamentally new empirical tools, how do they fit with what we know?
+        \item  As empirical economists, how can we use them?
        \end{itemize}
 \end{itemize}
 
@@ -173,7 +173,7 @@ Y=f(X)+u
 \end{align}
 \medskip
 \begin{itemize}
-  \item Interest lies on inference 
+  \item Interest lies on inference
   \medskip
   \item "Correct" $f()$ to understand how Y is affected by X
   \medskip
@@ -188,17 +188,17 @@ Y=f(X)+u
 \begin{frame}
 \frametitle{Example: OLS and the classical model}
 
-Set 
+Set
 
 \begin{align}
 f(X)=X\beta
 \end{align}
 
 \begin{itemize}
-    \item $Y=X\beta+u$ 
+    \item $Y=X\beta+u$
     \item Interest in $\beta$
 
-    \item The model is given. 
+    \item The model is given.
     \item Problem: how to estimate $\beta$ in the given model?
     \item Minimize $SSR$
       \begin{align}
@@ -228,8 +228,8 @@ Y=f(X)+u
   \medskip
   \item "Correct" $f()$ to be able to predict (no inference!)
   \medskip
-  \item Model? 
-  
+  \item Model?
+
 \end{itemize}
 
 
@@ -255,16 +255,16 @@ Y=f(X)+u
 
 \begin{centering}
 \begin{tabular}{cc}
-\hline 
+\hline
 Inference & Action Space\\
-\hline 
-\hline 
+\hline
+\hline
 Estimation $\theta$, $g\left(\theta\right)$  & $\mathcal{A}=\Theta$\\
 Prediction & $\mathcal{A}=space\,of\,X_{n+1}$\\
 Model Selection & $\mathcal{A}=\left\{ Model\,I,Model\,II,...\right\} $\\
 Hyp. Testing & $\mathcal{A}=\left\{ Reject|Accept\,H_{0}\right\} $\\
 
-\hline 
+\hline
 \end{tabular}
 \par\end{centering}
 \end{table}
@@ -306,11 +306,11 @@ Hyp. Testing & $\mathcal{A}=\left\{ Reject|Accept\,H_{0}\right\} $\\
 
 \begin{itemize}
   \item Squared Error Loss:
-  
+
   \begin{align}
       L(a,\theta)=(a-\theta)^{2}
   \end{align}
-    
+
     \item Absolute Error Loss:
 
     \begin{align}
@@ -322,7 +322,7 @@ Hyp. Testing & $\mathcal{A}=\left\{ Reject|Accept\,H_{0}\right\} $\\
 \item These two are symmetric functions. However, there's no restriction. For example in hypothesis testing a "0-1" Loss is common.
 \item Loss is minimum if the action is correct
 \end{itemize}
-%how $L$ looks as longs as it maps into $\left[0,\infty\right]$. 
+%how $L$ looks as longs as it maps into $\left[0,\infty\right]$.
 \end{frame}
 %----------------------------------------------------------------------%
 
@@ -331,10 +331,10 @@ Hyp. Testing & $\mathcal{A}=\left\{ Reject|Accept\,H_{0}\right\} $\\
 \begin{frame}
 \frametitle{Statistical Decision Theory: A bit of theory}
 \framesubtitle{Risk Function}
-In a decision theoretic analysis, the quality of an estimator is quantified by its risk function, that is, for an estimator $\delta(x)$ of $\theta$, the risk function is 
+In a decision theoretic analysis, the quality of an estimator is quantified by its risk function, that is, for an estimator $\delta(x)$ of $\theta$, the risk function is
 
 \begin{align}
-      R(\theta,\delta)=E_\theta L(\theta,\delta(X))
+      R(\theta,\delta)=E_\theta (L(\theta,\delta(X))
     \end{align}
 
     at a given $\theta$, the risk function is the average loss that will be incurred if the estimator $\delta(X)$ is used
@@ -385,13 +385,13 @@ the parameter is not fixed, comes from a distribution.
 \end{itemize}
 
 \begin{align}
-  R(Y,f(X)) &=E[(Y-f(X)^2] \\
-            &=\int (y-f(x)^2 Pr(dx,dy)
+  R(Y,f(X)) &=E[(Y-f(X))^2] \\
+            &=\int (y-f(x))^2 Pr(dx,dy)
 \end{align}
 
 conditioning on X we have that
 \begin{align}
- R(Y,f(X)|X) &= E_X E_{Y|X} [(Y-f(X))^2|X] 
+ R(Y,f(X)|X) &= E_X E_{Y|X} [(Y-f(X))^2|X]
 \end{align}
 
 this risk is also know as the {\bf mean squared (prediction) error} $Err(f)$
@@ -410,9 +410,9 @@ f(x)= argmin_m E_{Y|X} [(Y-m)^2|X=x)
 Y a random variable and m a constant (predictor)
 
 \begin{align}
-min_m E(Y-m)^2= \int (y-m)^2  f(y)dy 
+min_m E(Y-m)^2= \int (y-m)^2  f(y)dy
 \end{align}
-Result: The best prediction of $Y$ at any point $X = x$ is the conditional mean, when best is measured by mean squared error. 
+Result: The best prediction of $Y$ at any point $X = x$ is the conditional mean, when best is measured by mean squared error.
 
 \end{frame}
 %----------------------------------------------------------------------%
@@ -421,19 +421,19 @@ Result: The best prediction of $Y$ at any point $X = x$ is the conditional mean,
 \frametitle{Mean square error}
 Proof
 
-FOC 
+FOC
 
 \begin{align}
-\int -2 (y-m)  f(y)  dy =0 
+\int -2 (y-m)  f(y)  dy =0
 \end{align}
 
 Divided by -2 and clearing
 
 \begin{align}
- m \int (y) dy = \int y f(y)  dz =0 
+ m \int (y) dy = \int y f(y)  dz =0
 \end{align}
 \begin{align}
-m=E(Y|X=x) 
+m=E(Y|X=x)
 \end{align}
 
 
@@ -448,7 +448,7 @@ The best prediction of $Y$ at any point $X = x$ is the conditional mean, when be
 
 
 \begin{align}
-  Y=f(X)+u 
+  Y=f(X)+u
 \end{align}
 
 
@@ -468,7 +468,7 @@ The best prediction of $Y$ at any point $X = x$ is the conditional mean, when be
 \begin{itemize}
 \item Let's think about our usual problem $f(.)$ is unknown
 \item Consider a given estimate $\hat f$ and a set of predictors
-\item this predictors yield $\hat Y = \hat f(x)$. 
+\item this predictors yield $\hat Y = \hat f(x)$.
 \item For now assume $\hat f$ and X are fixed {\tiny (Hastie et al. make this assumption any idea why?)}
 \item Then we can show that the mean square error
 \end{itemize}
@@ -505,14 +505,14 @@ Remember
 \begin{itemize}
   \item $Bias (\hat f(X) )=E (\hat f(X) )-f=E (\hat f(X)-f(X))$
   \item  $Var (\hat f)  =E (\hat f - E (\hat f))^2$
-\end{itemize}  
+\end{itemize}
 
 \bigskip
 {\bf Result} (very important!)
 \bigskip
 
 \begin{align}
-  MSE = Bias^2 (\hat f(X))+V (\hat f(X)) 
+  MSE = Bias^2 (\hat f(X))+V (\hat f(X))
 \end{align}
 
 {\tiny Proof: as an exercise}
@@ -524,7 +524,7 @@ Remember
 \frametitle{The econometric approach}
 
 \begin{align}
-MSE = Bias^2 (\hat f(X))+V (\hat f(X)) 
+MSE = Bias^2 (\hat f(X))+V (\hat f(X))
 \end{align}
 
 \bigskip
@@ -552,7 +552,7 @@ MSE = Bias^2 (\hat f(X))+V (\hat f(X))
   \pause
   \medskip
   \item Non-Parametric methods $\rightarrow$ no assumption about $f()$ let the data speak
-    
+
 \end{itemize}
 
 \end{frame}
@@ -704,7 +704,7 @@ Y=\beta_1+\beta_2 X+\beta_3 X^2+u
 
 
 \begin{itemize}
-  \item Supervised Learning 
+  \item Supervised Learning
   \begin{itemize}
     \item for each predictor $x_i$ a 'response' is observed $y_i$.
     \item everything we have done in econometrics is supervised
@@ -714,14 +714,14 @@ Y=\beta_1+\beta_2 X+\beta_3 X^2+u
 \bigskip
 \begin{figure}[H] \centering
   \captionsetup{justification=centering}
-  
+
     \centering
     \includegraphics[scale=0.15]{figures/supevised}
   \\
   \tiny
   Source: \url{shorturl.at/opqKT}
   \end{figure}
-  
+
 \end{frame}
 
 
@@ -730,16 +730,16 @@ Y=\beta_1+\beta_2 X+\beta_3 X^2+u
 \frametitle{Supervised vs Unsupervised}
 
 \begin{itemize}
-  \item Unsupervised Learning 
+  \item Unsupervised Learning
   \begin{itemize}
-    \item observed $x_i$ but no response. 
+    \item observed $x_i$ but no response.
     \item example: cluster analysis
   \end{itemize}
   \end{itemize}
 
 \bigskip
     \begin{figure}[H] \centering
-  
+
     \centering
     \includegraphics[scale=0.2]{figures/unsupevised}
   \\
@@ -754,7 +754,7 @@ Y=\beta_1+\beta_2 X+\beta_3 X^2+u
 \begin{frame}
 \frametitle{Recap}
 
-\begin{itemize} 
+\begin{itemize}
     \item We start shifting paradigms
     \medskip
     \item Tools are not that different (so far)
@@ -775,18 +775,18 @@ Y=\beta_1+\beta_2 X+\beta_3 X^2+u
 
 \begin{frame}
 \frametitle{Next}
-  
-  \begin{itemize} 
+
+  \begin{itemize}
   \item  Next Class: OLS, Geometry, BLUE, BLUP
   \bigskip
   \item  GitHub Demo
   \bigskip
   \item Questions about software installation
   \medskip
-    \begin{itemize} 
+    \begin{itemize}
       \item  \texttt{R} and \texttt{RStudio}
       \medskip
-      \item \texttt{Conda}? 
+      \item \texttt{Conda}?
     \end{itemize}
   \end{itemize}
 
@@ -806,7 +806,7 @@ Y=\beta_1+\beta_2 X+\beta_3 X^2+u
   \item Friedman, J., Hastie, T., \& Tibshirani, R. (2001). The elements of statistical learning (Vol. 1, No. 10). New York: Springer series in statistics.
   \bigskip
   \item Mullainathan, S. and Spiess, J., 2017. Machine learning: an applied econometric approach. Journal of Economic Perspectives, 31(2), pp.87-106.
-  
+
 
 \end{itemize}
 
@@ -814,5 +814,3 @@ Y=\beta_1+\beta_2 X+\beta_3 X^2+u
 
 %----------------------------------------------------------------------%
 \end{document}
-
-
