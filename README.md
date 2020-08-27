@@ -16,3 +16,6 @@
 4b. Lecture 4 Comp \[[Slides](https://github.com/ECON-4676-UNIANDES/lectures/blob/master/Lecture4/Lecture4_comp.pdf)\] [[Link Recording Zoom Class](https://www.dropbox.com/sh/65ymtwbdzuas9p0/AAD6Gh5NAxb6ev9HKvyNLvxXa?dl=0)\]
 
 5. Lecture 5 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture5/Lecture5.pdf)\] [[Link Recording Zoom Class](https://www.dropbox.com/sh/xu35pcxbk34ck5u/AAA8VHTkWXcBVjecwIbGcuXla?dl=0)\]
+
+
+6. Lecture 6 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture6/Lecture6.pdf)\] [[Link Recording Zoom Class]()\]
