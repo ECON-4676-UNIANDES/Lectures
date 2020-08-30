@@ -388,7 +388,7 @@ e &=y-\hat y \\
 replacing $\hat \beta $
 
 \begin{align}
-e &= Y- X(X'X)^{-1}X'y \\
+e &= y- X(X'X)^{-1}X'y \\
   &= (I- X(X'X)^{-1}X')y
 \end{align}
 
@@ -561,14 +561,14 @@ M_{e_j} y =M_{e_j} X\beta + r
 \begin{itemize}
   \footnotesize
 \item $\beta$ and {\it residuals} from both regressions are identical
-\item Same estimates as those that would be obtained if we deleted observation $j$ from the sample we are going to denote this as $\beta^{(j)}$
+\item Same estimates as those that would be obtained if we deleted observation $j$ from the sample. We are going to denote this as $\beta^{(j)}$
 \end{itemize}
 
 Note: 
 \begin{itemize}
 \item $M_{e_j}=I-e_j(e_j'e_j)^{-1}e_j'$
 \item  $M_{e_j} y = y-e_j(e_j'e_j)^{-1}e_j' y= y-y_je_j$
-\item  $M_{e_j} X$ is X with the {\it j column} replaced by zeros
+\item  $M_{e_j} X$ is X with the {\it j row } replaced by zeros
 \end{itemize}
 
 
@@ -640,7 +640,7 @@ Finally we get
 Influence depends on two factors
 \begin{itemize}
   \item $\hat u_j$ large residual $\rightarrow$ related to y coordinate
-  \item $\hat h_t$ related to x coordinate $\rightarrow$ if $h_j$ is large, we have a high leverage
+  \item $\hat h_j$ related to x coordinate $\rightarrow$ if $h_j$ is large, we have a high leverage
 \end{itemize}
 
 \begin{figure}[H] \centering
@@ -655,7 +655,7 @@ Influence depends on two factors
 %----------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Applications: Leverage}
-Case of $y=\alpha + \beta x _u$ (ISLR)
+Case of $y=\alpha + \beta x +u$ (ISLR)
 
 \begin{align}
 h_j&=e'_j P_X e_j \\
