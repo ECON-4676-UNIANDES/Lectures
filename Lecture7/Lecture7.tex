@@ -299,20 +299,20 @@ If the likelihood function is differentiable (in $\theta$) a possible candidate 
 Here
 
 \begin{align}
-L(\theta)=\frac{1}{(\sqrt{2\pi})^{n}}e^{-\frac{1}{2}\sum_{i=1}^{n}(x_i-\mu)^2}
+L(\theta |x)=\frac{1}{(\sqrt{2\pi})^{n}}e^{-\frac{1}{2}\sum_{i=1}^{n}(x_i-\mu)^2}
 \end{align}
 
 
 taking logs 
 
 \begin{align}
-l\left(\theta\right)=-\frac{n}{2}log\left(2\pi\right)-\frac{1}{2}\sum_{i=1}^{n}(x_i-\mu)^2
+l\left(\theta |x\right)=-\frac{n}{2}log\left(2\pi\right)-\frac{1}{2}\sum_{i=1}^{n}(x_i-\mu)^2
 \end{align}
 
 FOC
 
 \begin{align}
-\frac{\partial l\left(\theta\right)}{\partial\mu}=0
+\frac{\partial l\left(\theta |x\right)}{\partial\mu}=0
 \end{align}
 
 
@@ -323,7 +323,7 @@ FOC
 \frametitle{Maximum Likelihood Estimation}
 
 \begin{align}
-\frac{\partial l\left(\theta\right)}{\partial\mu}=2\frac{\sum_{i=1}^{n}\left(x_{i}-\mu\right)}{2}=0
+\frac{\partial l\left(\theta |x\right)}{\partial\mu}=2\frac{\sum_{i=1}^{n}\left(x_{i}-\mu\right)}{2}=0
 \end{align}
 
 
@@ -341,7 +341,7 @@ The MLE is the sample mean. Next we check the SOC
 
 
 \begin{align}
-\frac{\partial^2L(\theta|x)}{\partial \theta^2}=-n<0
+\frac{\partial^2l(\theta|x)}{\partial \theta^2}=-n<0
 \end{align}
 
 We are in  a global maximum
@@ -356,7 +356,7 @@ We are in  a global maximum
 Suppose now, that $f(y,x|\eta)$ is the joint density function of two variables $X$ and $Y$.  Then, it can be decomposed as
 
 \begin{align}
-f(y,x|\eta) =f(y|X,\theta)f(x|\phi)
+f(y,x|\eta) =f(y|x,\theta)f(x|\phi)
 \end{align}
 
 \begin{itemize}
