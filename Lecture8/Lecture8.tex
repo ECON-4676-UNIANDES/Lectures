@@ -419,7 +419,7 @@ Pr(x_k=x) = p_{\theta_k}(x)= \frac{e^{-\theta_k} \theta_k^x}{x!} \,\,\, for \,\,
 \begin{frame}[fragile]
 \frametitle{Robbins' Formula}
 
-Suppose now, that we know the prior density $g(theta)$. Then using Bayes rule we would have
+Suppose now, that we know the prior density $g(\theta)$. Then using Bayes rule we would have
 
 \begin{align}
 E(\theta|x)&= \int_0^{\infty} \theta \pi(\theta)d\theta \\
@@ -524,7 +524,7 @@ We can model
 \end{align}
 
 \begin{itemize}
-\item where $n$ is the times at bat and $p$ is the proportion of successes
+\item where $n$ is the times at bat and $\theta$ is the proportion of successes
 \end{itemize}
 
 \end{frame}
@@ -665,8 +665,8 @@ X \sim Beta(\alpha_0,\beta_0)
 \footnotesize
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# just like the graph, we have to filter for the players we actually}
-\CommentTok{\# have a decent estimate of}
+\CommentTok{\# Here, we have to filter for the players we actually}
+\CommentTok{\# have a decent estimate of the average}
 \NormalTok{career\_filtered \textless{}{-}}\StringTok{ }\NormalTok{career }\OperatorTok{\%\textgreater{}\%}
 \StringTok{    }\KeywordTok{filter}\NormalTok{(AB }\OperatorTok{\textgreater{}=}\StringTok{ }\DecValTok{500}\NormalTok{)}
 
