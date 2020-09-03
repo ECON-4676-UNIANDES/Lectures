@@ -25,5 +25,4 @@
 8. Lecture 8 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture8/Lecture8.pdf)\] [[Link Recording Zoom Class]()\]
 
 
-8. Lecture 8 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture8/Lecture8.pdf)\] [[Link Recording Zoom Class]()\]
 
