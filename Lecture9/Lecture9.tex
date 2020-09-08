@@ -184,9 +184,9 @@
     \bigskip
     \item At some point over the weekend I'll send what points everyone should present
     \bigskip
-    \item Assignment would be based on the groups created on \texttt{Github}.
+    \item Assignment would be based on the groups created on \texttt{Github}
     \bigskip
-    \item  You should consider class presentations as mini-seminars, just 2-5 minutes using one or two transparencies, 
+    \item  You should consider class presentations as mini-seminars, just 2-5 minutes using one or two transparencies
     \bigskip
     \item  Attempt to make a concise interpretation of the relevant material, making effective use of supporting numerical and graphical evidence.    
 \end{itemize}
@@ -230,9 +230,11 @@ It is important to note that Bayes' theorem  does not tell us what our beliefs s
 \begin{frame}[fragile]
 \frametitle{A Simple Covid Example}
 \begin{itemize}
-\item Suppose we are interested in the prevalence of COVID in a small city. The higher the prevalence, the more public health precautions we would recommend be put into place. A small random sample of 20 individuals from the city will be checked for the presence of the virus.
+\item Suppose we are interested in the prevalence of COVID in a small city. The higher the prevalence, the more public health precautions we would recommend be put into place. 
 \medskip
-\item Interest is in $\theta$, the fraction of infected individuals in the city. Roughly speaking, the parameter space includes all numbers between zero and one. The data $y$ records the total number of people in the sample who are infected.
+\item A small random sample of 20 individuals from the city will be checked for the presence of the virus.
+\medskip
+\item Interest is in $\theta$, the fraction of infected individuals in the city. Roughly speaking, the parameter space includes all numbers between zero and one. The data $X$ records the total number of people in the sample who are infected.
 \medskip
 \item Before the sample is obtained the number of infected individuals in the sample is unknown.
 \end{itemize}
@@ -319,6 +321,8 @@ m(x) &= \int f(X|\theta)p(\theta)d\theta \\
 \frametitle{A Simple Covid Example}
 \framesubtitle{Posterior distribution}
 The marginal (cont)
+
+\begin{scriptsize}
 \begin{align}
 %m(x) &= \int f(X|\theta)p(\theta)d\theta \\
  %&= \int_0^1 \binom{n}{x}\theta^x(1-\theta)^{n-x} \times\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\theta^{a-1}(1-\theta)^{b-1}  d\theta \\
@@ -326,6 +330,7 @@ The marginal (cont)
  m(x) &= \binom{n}{x} \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}  \frac{\Gamma(a+x)\Gamma(b+n-x)}{\Gamma(a+b+n)} \int_0^1  \frac{\Gamma(a+b+n)}{\Gamma(a+x)\Gamma(b+n-x)} \theta^{x+a-1}(1-\theta)^{n-x+b-1}  d\theta \\
  &= \binom{n}{x} \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}  \frac{\Gamma(a+x)\Gamma(b+n-x)}{\Gamma(a+b+n)}
 \end{align}
+\end{scriptsize}
 
 The posterior
 \begin{align}

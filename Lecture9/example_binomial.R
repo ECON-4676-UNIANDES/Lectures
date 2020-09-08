@@ -46,3 +46,18 @@ choose(20,0)*.95^20
 
 choose(20,1)*0.05*.95^19
   
+
+x <- seq(0,1,length=100)
+beta_dist <- data.frame(theta=x, prob=dbeta(x,2,40))
+
+ggplot(beta_dist, aes(theta,prob)) +
+  geom_line() +
+  xlab("% Infected Population") + 
+  ylab("Density") + 
+  scale_x_continuous(breaks = round(seq(min(beta_dist$theta), max(beta_dist$theta), by = 0.01),1)) +
+  theme_bw()  +
+  theme(legend.title =element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+  )
+ggsave("figures/fig_2.pdf",height = 7, width = 12)
