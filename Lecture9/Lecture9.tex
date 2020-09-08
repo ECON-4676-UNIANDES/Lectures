@@ -507,13 +507,14 @@ We are using batting averages to assess who are the best and worst batters
 
 Question: Can we use Bayesian stats to get a better estimate?
 
-
+\bigskip
 \begin{align}
 X \sim Beta(\alpha_0,\beta_0)
 \end{align}
-
+\bigskip
 \begin{itemize}
   \item We don't know $\alpha_0$ and $\beta_0$. We could use the fact that most batting averages are between .210 and .360. Select $\alpha_0$ and $\beta_0$ accordingly.
+  \bigskip
   \item Or we can use Empirical Bayes: estimate these parameters from the data
 \end{itemize}
 
@@ -525,9 +526,10 @@ X \sim Beta(\alpha_0,\beta_0)
 Histogram of batting averages
 
 \bigskip
+\bigskip
 \begin{figure}[H] \centering
   \centering
-  \includegraphics[scale=0.4]{figures/average_hist.pdf}
+  \includegraphics[scale=0.6]{figures/average_hist.pdf}
   \\
   \tiny 
 \end{figure}
