@@ -596,7 +596,7 @@ T_n=2(l_j(\hat \theta_j)-l_i(\hat \theta_i)) \rightarrow \chi^2_{p_j-p_i}
 
 \begin{itemize}
 \item Computational advantage over best subset selection is clear.
-\item  It is not guaranteed to find the best possible model out of all $2p$ models containing subsets of the p predictors. Why not? Give an example.
+\item  It is not guaranteed to find the best possible model out of all $2^p$ models containing subsets of the p predictors. 
 \item ISLR Example
 \end{itemize}
 
@@ -656,7 +656,7 @@ T_n=2(l_j(\hat \theta_j)-l_i(\hat \theta_i)) \rightarrow \chi^2_{p_j-p_i}
 \item Each of the procedures returns a sequence of models $M_k$ indexed by model size $k = 0,1,2,\dots$ .
 \item Our job here is to select $\hat k$. Once selected, we will return model $M_{\hat{k}}$
 \item We compute the validation set error or the cross-validation error for each model $M_k$ under consideration, and then select the $k$ for which the resulting estimated test error is smallest.
-\item This procedure has an advantage relative to AIC, BIC, and adjusted $R^2$, in that it provides a direct estimate of the test error, and doesn't require an estimate of the error variance $\sigma^2$
+\item This procedure has an advantage relative to AIC ($C_p$), BIC, and adjusted $R^2$, in that it provides a direct estimate of the test error, and doesn't require an estimate of the error variance $\sigma^2$
 \item It can also be used in a wider range of model selection tasks, even in cases where it is hard to pinpoint the model degrees of freedom (e.g. the number of predictors in the model) or hard to estimate the error variance $\sigma^2$ 
 \end{itemize}
 \end{frame}
