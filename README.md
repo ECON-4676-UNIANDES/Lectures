@@ -40,3 +40,5 @@
 
 17. Lecture 17 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture17/Lecture17.pdf)\] [[Link Recording Zoom Class](https://www.dropbox.com/sh/ivt6y4xllgdqaoo/AAB8C1thVZxDMr48gDBcWI3wa?dl=0)\]
 
+18. Lecture 18 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture18/Lecture18.pdf)\] [[Link Recording Zoom Class]()\]
+

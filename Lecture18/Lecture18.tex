@@ -159,7 +159,7 @@
 
 \begin{document}
  
-\title[Lecture 17]{Lecture 17: \\ Regularization/Shrinkage Methods- Elastic Net  \\ Classification}
+\title[Lecture 18]{Lecture 18: \\ Classification}
 \subtitle{Big Data and Machine Learning for Applied Economics \\ Econ 4676}
 \date{\today}
 
@@ -186,131 +186,63 @@
 
 %----------------------------------------------------------------------%
 \section{Recap }
-\subsection{Lasso}
+\subsection{Elastic Net}
 %----------------------------------------------------------------------%
 \begin{frame}[fragile]
-\frametitle{Overfit and out of Sample Prediction}
-
-\frametitle{Demo Regularization}
-
-   \begin{figure}[H] \centering
-            \captionsetup{justification=centering}
-              \includegraphics[scale=0.2]{figures/comp}
- \end{figure}
-
-
-\end{frame}
-%----------------------------------------------------------------------%
-\begin{frame}[fragile]
-\frametitle{Motivation}
+\frametitle{Elastic Net}
 
 \begin{itemize}
-  \item Accuracy: Minimize prediction error (in one step) $\rightarrow$ Ridge, Lasso
-  \item Dimentionality: reduce the predictor space $\rightarrow$ Lasso's free lunch
+\item Naive Elastic Net
+\end{itemize}
+
+\begin{align}
+min_{\beta} NEL(\beta) &= \sum_{i=1}^n (y_i-x_i'\beta)^2 + \lambda_1 \sum_{s=2}^p |\beta_s| + \lambda_2 \sum_{s=2}^p \beta_s^2 
+\end{align}
+
+\begin{itemize}
+\item Elastic Net: reescaled version
+\item Double Shrinkage introduces ``too'' much bias, {\it final} version ``corrects'' for this
 \end{itemize}
 \bigskip
+\begin{align}
+\hat{\beta}_{EN}= \frac{1}{\sqrt{1+\lambda_2}}\hat{\beta}_{naive\,EN}
+\end{align}
+\bigskip
 \begin{itemize}
-  \item What happens when we have $k>n$?
-  \begin{itemize}
-   \item OLS fails
-   \item Ridge and Lasso to the rescue?
-  \end{itemize}
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------------------------------%
-\begin{frame}[fragile]
-\frametitle{Prediction}
-
-\begin{itemize}
-  \item Rank? Max number of rows or columns that are linearly independent
-  \item MCO we need $rank(X_{k\times n}) \leq min(k,n)$. Why?)
-  \item If $rank(X_{k\times n})=k$ then $rank(X'X)=k$
-  \item So if $k>n$, then  $rank(X'X)\leq n < k$ then $X'X$ cannot be inverted
-  \item Ridge and Lasso work when $k \geq n$
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------------------------------%
-\begin{frame}[fragile]
-\frametitle{Ridge when $k>n$}
-
-
-\begin{itemize}
-  \item Solution $\rightarrow$ data augmentation
-  \item Problem set 2 HW
-  \item Intuition: Ridge ``adds'' $k$ additional points.
-  \item Allows us to ``deal'' with $k\geq n$
-\end{itemize}
-
-\end{frame}
-%----------------------------------------------------------------------%
-\begin{frame}[fragile]
-\frametitle{Problems with Lasso}
-
-\begin{itemize}
-\item When $k>n$ chooses at most $k$ variables
-\item When we have a group of highly correlated variables, it tends to choose only one. Arbitrarily!!!
-\item Makes it unstable fro prediction. (Doesn't happen to Ridge)
-\item When $k>n$ and there's high correlation among predictors, Ridge tends to ``work'' better than Lasso. ``Work'' in terms of prediction error
-\item Elastic net: happy medium. Predicts well, reduces dimensionality, selects well variables
+  \item Careful sometimes software asks.
 \end{itemize}
 
 
 
 \end{frame}
 %----------------------------------------------------------------------%
+\subsection{Lasso for Causality}
+%----------------------------------------------------------------------%
 \begin{frame}[fragile]
-\frametitle{Problems with Lasso}
-
-
+\frametitle{Lasso for Causality}
+\framesubtitle{Inference with Selection among Many Controls}
 
 \begin{align}
-min_{\beta} EL(\beta) &= \sum_{i=1}^n (y_i-x_i'\beta)^2 + \lambda_1 \sum_{s=2}^p |\beta_s| + \lambda_2 \sum_{s=2}^p \beta_s^2 \nonumber \\
- &= \sum_{i=1}^n (y_i-x_i'\beta)^2 + \lambda \sum_{s=2}^p \left(  (1-\alpha) \beta_s^2 + \alpha  |\beta_s|\right)
-\end{align}
-
+    y_i = \alpha d_i + x_i'\theta_y +r_{yi} + \zeta_i
+  \end{align}
 
 \begin{itemize}
- \item Mixes Ridge and Lasso
- \item Lasso selects predictors
- \item Strict convexity part  of the penalty (ridge) solve the grouping instability problem 
+\item We apply variable selection methods to each of the two reduced form equations and then use all of the selected controls in estimation of $\alpha$. 
+\medskip
+\item We select
+\begin{enumerate}
+\item A set of variables that are useful for predicting $y_i$, say $x_{yi}$, and 
+\item A set of variables that are useful for predicting $d_i$, say $x_{di}$.
+
+\end{enumerate}
+\item We then estimate $\alpha$ by ordinary least squares regression of $y_i$ on $d_i$ and the union of the variables selected for predicting $y_i$ and $d_i$, contained in $x_{yi}$ and $x_{di}$. 
+
+\item We thus make sure we use variables that are important for either of the two predictive relationships to guard against OVB
+
+%Using both variable selection steps immunizes the resulting procedure against the types of model selection mistakes discussed above for single-equation procedures. Specififically, using the variables selected in both reduced form equations ensures that any variables that have large effects in either the “structural” equation for yi or the reduced form equation for di are included in the model. Any excluded variables are therefore at most mildly associated to yi and di, which greatly limits the scope for omitted-variables bias. It is also noteworthy that the “double selection” procedure implicitly estimates the residuals εi and vi and then regresses the estimates of εi on the estimates of vi to construct an estimator of α, thereby providing a selection analog of Robinson’s (1988) method for estimating the parameters of a partially linear model to the high-dimensional case.
 \end{itemize}
-
-
 \end{frame}
-%----------------------------------------------------------------------%
-\begin{frame}[fragile]
-\frametitle{Problems with Lasso}
 
-Let $\beta_{OLS}>0$ one predictor standarized
-
-\begin{align}
-\hat{\beta}_{naive\,EN}= \frac{\left(\hat{\beta}_{OLS}-\frac{\lambda_1}{2}\right)_{+}}{1+\lambda_2}
-\end{align}
-
-\begin{itemize}
-\item Where $+$ refers to the positive part, e.g. $(x)_{+}$ takes $x$ if $x>0$ and $0$ otherwise
-\end{itemize}
-
-\end{frame}
-%----------------------------------------------------------------------%
-\begin{frame}[fragile]
-\frametitle{Reescaled version}
-
-
-\begin{align}
-\hat{\beta}_{EN}= \frac{\hat{\beta}_{naive\,EN}}{\sqrt{1+\lambda_2}}
-\end{align}
-
-\begin{itemize}
-\item How to choose $(\lambda_1,\lambda_2)$?
-\item Bidimensional Crossvalidation
-\end{itemize}
-
-\end{frame}
 
 %----------------------------------------------------------------------%
 \section{Classification}
@@ -327,15 +259,18 @@ Let $\beta_{OLS}>0$ one predictor standarized
 \end{frame}
 %----------------------------------------------------------------------%
 \begin{frame}[fragile]
-\frametitle{Motivation}
+\frametitle{Classification: Motivation}
 
 \begin{itemize}
-\item Admit a student to $PEG$ based on their grades and lor
+\item Admit a student to $PEG$ based on their grades and LoR
+\medskip
 \item Give a credit, based on credit history, demographics?
+\medskip
 \item Classifying emails: spam, personal, social based on email contents
-\bigskip
+\medskip
 \item Aim is to classify $y$ based on $X's$
-\item $y$ is
+\medskip
+\item $y$ can be
 \begin{itemize}
   \item qualitative (e.g., spam, personal, social)
   \item Not necessarily ordered
@@ -351,36 +286,832 @@ Let $\beta_{OLS}>0$ one predictor standarized
 \frametitle{Motivation}
 
 \begin{itemize}
-  \item Two states of nature $y=\{0,1\}$
-  \item Two actions $\hat{y}=\{0,1\}$
+  \item Two states of nature $y \rightarrow i\in\{0,1\}$
+  \medskip
+  \item Two actions $(\hat{y}) \rightarrow j\in \{0,1\}$
 \end{itemize}
 
-\begin{table}[H]
+%begin{table}[H]
+%centering
+%begin{tabular}{cccc}
+%& \multicolumn{3}{c}{$\hat{y}$}\tabularnewline
+%&  & 0 & 1 \\
+%\hline
+%multirow{2}{*}{y} & 0 & True Negative & False Positive \\
+%& 1 & False Negatice & True Positive \\
+%end{tabular}
+%end{table}
+
+
+        \begin{figure}[H] \centering
+            \captionsetup{justification=centering}
+              \includegraphics[scale=0.4]{figures/confusion_matrix}
+              \\
+              \tiny
+              Source: \url{https://dzone.com/articles/understanding-the-confusion-matrix}
+ \end{figure}
+
+\end{frame}
+
+
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Probability, Cost,and Classification}
+
+\begin{itemize}
+  \item Two states of nature $y \rightarrow i\in\{0,1\}$
+  \medskip
+  \item Two actions $(\hat{y}) \rightarrow j\in \{0,1\}$
+  \medskip
+  \item Probabilities
+  \begin{itemize}
+    \item $p=Pr(Y=1|X)$
+    \item $1-p=Pr(Y=0|X)$
+  \end{itemize}
+  \medskip
+  \item Loss: $L(i,j)$, penalizes being in bin $i,j$
+  \item Risk: expected loss of taking action $i$
+\end{itemize}
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Probability, Cost,and Classification}
+
+\begin{itemize}
+  \item Risk: expected loss of taking action $i$
+\end{itemize}
+
+\begin{align}
+E[L(i,j)] = \sum_j p_j L(i,j)
+\end{align}
+
+\begin{itemize}
+  \item The objective is the same as before: minimize the risk
+  \item We have to define $L(i,j)$
+\end{itemize}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Probability, Cost,and Classification}
+
+\begin{itemize}
+  \item Risk: expected loss of taking action $i$
+\end{itemize}
+
+\begin{align}
+E[L(i,j)] &= \sum_j p_j L(i,j) \\ \nonumber
+R(i) &= (1-p) L(i,0) + p L(i,1)
+\end{align}
+
+\begin{itemize}
+  \item Loss 0-1: $L(i,j)=1[i\neq j]$
+  \item the expected loss will be negative (i.e. you will expect to make a profit (min costs)) 
+\end{itemize}
+
+\begin{align}
+R(1) &< R(0) \\ \nonumber
+1-p &< p \\ \nonumber
+p &> \frac{1}{2} \\ \nonumber
+\end{align}
+
+\begin{itemize}
+  \item This is known as the Bayes Classifier
+  \item Choose the estate that minimizes the expected risk
+\end{itemize}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Probability, Cost,and Classification}
+
+\begin{itemize}
+  \item Under a 0-1 penalty the problem boils down to finding $p=PR(Y=1|X)$
+  \medskip
+  \item We then predict 1 if $p>0.5$ and 0 otherwise (Bayes classifier)
+  \medskip
+  \item We can think 3 ways of finding this probability in binary cases
+  \begin{itemize}
+    \item K-Nearest Neighbors
+    \item Logistic
+    \item LDA
+  \end{itemize}
+\medskip
+  \item Why not $p=X\beta$?
+\end{itemize}
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\subsection{K-Nearest Neighbors}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{K-Nearest Neighbors}
+
+
 \centering
-\begin{tabular}{cccc}
- & \multicolumn{3}{c}{$y$}\tabularnewline
- &  & 0 & 1 \\
- \hline
-\multirow{2}{*}{$\hat{y}$} & 0 & True Negative & False Negative \\
- & 1 & False Positive & True Negative \\
-\end{tabular}
-\end{table}
-
-
-
+{\huge \textcolor{andesred}{K-Nearest Neighbors}}
 
 
 
 \end{frame}
 %----------------------------------------------------------------------%
-\section{Review}
-%----------------------------------------------------------------------%
 \begin{frame}[fragile]
-\frametitle{Review}
+\frametitle{K-Nearest Neighbors}
 
-   
+\begin{itemize}
+\item K nearest neighbor (K-NN) algorithm predicts class $\hat y$ for $x$ by asking \\
+{\it What is the most common class for observations around x?}
+\end{itemize}
+        \begin{figure}[H] \centering
+            \captionsetup{justification=centering}
+              \includegraphics[scale=0.13]{figures/knn}
+              \\
+              \tiny
+              Source: Taddy (2019)
+ \end{figure}
 
  \end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{K-Nearest Neighbors}
+
+\begin{itemize}
+\item K nearest neighbor (K-NN) algorithm predicts class $\hat y$ for $x$ by asking \\
+{\it What is the most common class for observations around x?}
+\item Algorithm: given an input vector $x_f$ where you would loik to predict the class label
+
+\begin{itemize}
+  \item Find the K nearest neighbors in the dataset of labeled observations, ${x_i,y_i}_{i=1}^n$, the most common distance is the Euclidean distance:
+  \begin{align}
+  d(x_i,x_f)=\sqrt{\sum_{j=1}^p(x_{ij}-x_{fj})^2}
+  \end{align}
+  \item This yields a set of the $K$ nearest observations with labels: 
+  \begin{align}
+  [x_{i1},y_{i1}],\dots,[x_{iK},y_{iK}]
+  \end{align}
+  \item The predicted class of $x_f$ is the most common class in this set
+  \begin{align}
+  \hat{y}_f =mode\{y_{i1},\dots,y_{iK}\}
+  \end{align}
+\end{itemize}
+
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{K-Nearest Neighbors}
+
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Load the required packages}
+\KeywordTok{library}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{) }\CommentTok{\#for data wrangling}
+\KeywordTok{library}\NormalTok{(}\StringTok{"class"}\NormalTok{) }\CommentTok{\#for KNN}
+\KeywordTok{library}\NormalTok{(}\StringTok{"MASS"}\NormalTok{) }\CommentTok{\# a library of example datasets}
+\CommentTok{\#Read the data}
+\KeywordTok{data}\NormalTok{(fgl) }\CommentTok{\#\# loads the data into R; see help(fgl)}
+\KeywordTok{str}\NormalTok{(fgl)}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+
+\begin{tiny}
+\begin{verbatim}
+## 'data.frame':    214 obs. of  10 variables:
+##  $ RI  : num  3.01 -0.39 -1.82 -0.34 -0.58 ...
+##  $ Na  : num  13.6 13.9 13.5 13.2 13.3 ...
+##  $ Mg  : num  4.49 3.6 3.55 3.69 3.62 3.61 3.6 3.61 3.58 3.6 ...
+##  $ Al  : num  1.1 1.36 1.54 1.29 1.24 1.62 1.14 1.05 1.37 1.36 ...
+##  $ Si  : num  71.8 72.7 73 72.6 73.1 ...
+##  $ K   : num  0.06 0.48 0.39 0.57 0.55 0.64 0.58 0.57 0.56 0.57 ...
+##  $ Ca  : num  8.75 7.83 7.78 8.22 8.07 8.07 8.17 8.24 8.3 8.4 ...
+##  $ Ba  : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ Fe  : num  0 0 0 0 0 0.26 0 0 0 0.11 ...
+##  $ type: Factor w/ 6 levels "WinF","WinNF",..: 1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+\end{tiny}
+\begin{tiny}
+Refractive index and chemical composition for six possible glass types: float glass window (WinF), nonfloat glass window (WinNF), vehicle window (Veh), container (Con), tableware (Tabl), vehicle headlamp (Head)
+\end{tiny}
+
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{K-Nearest Neighbors}
+
+
+        \begin{figure}[H] \centering
+            \captionsetup{justification=centering}
+              \includegraphics[scale=0.15]{figures/glass}
+              
+ \end{figure}
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{K-Nearest Neighbors}
+
+\begin{itemize}
+  \item Units matter
+
+\begin{itemize}
+ \item Since distance is measured on the raw $x$ values, units matter.
+ \item As we did for regularization, we will standarized observations.
+ \item \texttt{R scale} function does this, i.e., convert columns to mean-zero sd-one
+\end{itemize}
+\end{itemize}
+\bigskip
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{scale}\NormalTok{(fgl[,}\DecValTok{1}\OperatorTok{:}\DecValTok{9}\NormalTok{]) }\CommentTok{\# column 10 is the class label}
+\KeywordTok{apply}\NormalTok{(x,}\DecValTok{2}\NormalTok{,sd) }\CommentTok{\# see ?apply}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+\begin{tiny}
+\begin{verbatim}
+## RI Na Mg Al Si  K Ca Ba Fe 
+##  1  1  1  1  1  1  1  1  1
+\end{verbatim}
+\end{tiny}
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{K-Nearest Neighbors}
+
+\begin{itemize}
+  \item Run \texttt{Knn}
+  \item Make sure you have numeric matrices of training data $x$ values, with labels $y$
+  \item Also need to provide new $test$ values where you would like to predict
+  \item Note that there's no model do fit, \texttt{Knn}, just counts neighbors for each observation in \texttt{test}
+\end{itemize}
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1010101}\NormalTok{)}
+\NormalTok{test \textless{}{-}}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{214}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\NormalTok{nearest1 \textless{}{-}}\StringTok{ }\KeywordTok{knn}\NormalTok{(}\DataTypeTok{train=}\NormalTok{x[}\OperatorTok{{-}}\NormalTok{test,], }\DataTypeTok{test=}\NormalTok{x[test,], }\DataTypeTok{cl=}\NormalTok{fgl}\OperatorTok{$}\NormalTok{type[}\OperatorTok{{-}}\NormalTok{test], }\DataTypeTok{k=}\DecValTok{1}\NormalTok{)}
+\NormalTok{nearest5 \textless{}{-}}\StringTok{ }\KeywordTok{knn}\NormalTok{(}\DataTypeTok{train=}\NormalTok{x[}\OperatorTok{{-}}\NormalTok{test,], }\DataTypeTok{test=}\NormalTok{x[test,], }\DataTypeTok{cl=}\NormalTok{fgl}\OperatorTok{$}\NormalTok{type[}\OperatorTok{{-}}\NormalTok{test], }\DataTypeTok{k=}\DecValTok{5}\NormalTok{)}
+\KeywordTok{data.frame}\NormalTok{(fgl}\OperatorTok{$}\NormalTok{type[test],nearest1,nearest5)}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+\begin{tiny}
+
+\begin{verbatim}
+##    fgl.type.test. nearest1 nearest5
+## 1            WinF     WinF    WinNF
+## 2            Head     Head     Head
+## 3           WinNF    WinNF    WinNF
+## 4            WinF     WinF     WinF
+## 5           WinNF    WinNF    WinNF
+## 6           WinNF    WinNF    WinNF
+## 7            Head      Con      Con
+## 8            Head    WinNF    WinNF
+## 9           WinNF    WinNF    WinNF
+## 10          WinNF     WinF     WinF
+\end{verbatim}
+\end{tiny}
+\end{frame}
+
+
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{K-Nearest Neighbors}
+\begin{itemize}
+\item In this case
+  \begin{itemize}
+    \item 1-Knn manages 70\% accuracy
+    \item 5-Knn manages 60\% accuracy
+    \item H.W. try for different seed, (Taddy's is 80\% and 70\%)
+  \end{itemize}
+  \item There are some major problems with practical implications
+  \begin{itemize}
+  \item Knn predictions are unstable as a function of $K$
+    \end{itemize}
+\end{itemize}
+  \begin{columns}[T] % align columns
+\begin{column}{.58\textwidth}
+\begin{align}
+  K&=1 \implies \hat{p}(white)=0 \nonumber \\
+  K&=2 \implies \hat{p}(white)=1/2 \nonumber \\
+  K&=3 \implies \hat{p}(white)=2/3 \nonumber \\
+  K&=4 \implies \hat{p}(white)=1/2 \nonumber 
+  \end{align}
+
+
+\end{column}
+\hfill
+\begin{column}{.4\textwidth}
+\begin{figure}[H] \centering
+            \captionsetup{justification=centering}
+              \includegraphics[scale=0.1]{figures/knn}
+              \\
+              \tiny
+              Source: Taddy (2019)
+ \end{figure}
+\end{column}
+\end{columns}
+  
+\end{frame}
+
+
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{K-Nearest Neighbors}
+\begin{itemize}
+\item In this case
+  \begin{itemize}
+    \item 1-Knn manages 70\% accuracy
+    \item 5-Knn manages 60\% accuracy
+    \item H.W. try for different seed, (Taddy's is 80\% and 70\%)
+  \end{itemize}
+  \medskip
+  \item There are some major problems with practical implications
+  \begin{itemize}
+  \item Knn predictions are unstable as a function of $K$
+  \medskip
+  \item This instability of prediction makes it hard to choose the optimal K and cross validation doesn't work well for KNN
+  \medskip
+  \item Since prediction for each new $x$ requires a computationally intensive counting, KNN is too expensive to be useful in most big data settings.
+  \medskip
+  \item KNN is a good idea, but too crude to be useful in practice
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\subsection{Logit}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit}
+
+
+\centering
+{\huge \textcolor{andesred}{Logit}}
+
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit}
+We have a conditional probability
+\begin{align}
+Pr(y=1|X) &= f(X'\beta) 
+\end{align}
+
+Logistic regression uses a $logit$ (sigmoid, softmax) link function
+
+\begin{align}
+p(y=1|X)=\frac{e^{X'\beta}}{1+e^{X'\beta}}=\frac{exp(\beta_0 +\beta_1 x_1 + \dots +\beta_k x_k)}{1+exp(\beta_0 +\beta_1 x_1 + \dots +\beta_k x_k)}
+\end{align}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit}
+
+
+
+        \begin{figure}[H] \centering
+            \captionsetup{justification=centering}
+              \includegraphics[scale=0.2]{figures/logistic}
+              \\
+              \tiny
+              Source: Taddy (2019)
+ \end{figure}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\subsection{Logit Demo}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit Demo}
+
+
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Load the required packages}
+\KeywordTok{library}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{) }\CommentTok{\#for data wrangling}
+\KeywordTok{library}\NormalTok{(}\StringTok{"gamlr"}\NormalTok{) }\CommentTok{\#ML}
+
+\CommentTok{\#Read the data}
+\NormalTok{credit\textless{}{-}}\KeywordTok{readRDS}\NormalTok{(}\StringTok{"credit\_class.rds"}\NormalTok{)}
+\KeywordTok{dim}\NormalTok{(credit)}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+
+\begin{tiny}
+\begin{verbatim}
+## [1] 1000    9
+\end{verbatim}
+\end{tiny}
+
+
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(credit)}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+
+\begin{tiny}
+\begin{verbatim}
+##   Default duration amount installment age  history      purpose foreign  rent
+## 1       0        6   1169           4  67 terrible goods/repair foreign FALSE
+## 2       1       48   5951           2  22     poor goods/repair foreign FALSE
+## 3       0       12   2096           2  49 terrible          edu foreign FALSE
+## 4       0       42   7882           2  45     poor goods/repair foreign FALSE
+## 5       1       24   4870           3  53     poor       newcar foreign FALSE
+## 6       0       36   9055           2  35     poor          edu foreign FALSE
+\end{verbatim}
+\end{tiny}
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit Demo}
+
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mylogit \textless{}{-}}\StringTok{ }\KeywordTok{glm}\NormalTok{(Default}\OperatorTok{\textasciitilde{}}\NormalTok{duration }\OperatorTok{+}\StringTok{ }\NormalTok{amount }\OperatorTok{+}\StringTok{ }\NormalTok{installment }\OperatorTok{+}\StringTok{ }\NormalTok{age }\OperatorTok{+}
+                      \StringTok{ }\KeywordTok{factor}\NormalTok{(history) }\OperatorTok{+}\StringTok{ }\KeywordTok{factor}\NormalTok{(purpose) }\OperatorTok{+}\StringTok{ }\KeywordTok{factor}\NormalTok{(foreign) }\OperatorTok{+}\StringTok{ }\KeywordTok{factor}\NormalTok{(rent), }
+                       \DataTypeTok{data =}\NormalTok{ credit, }\DataTypeTok{family =} \StringTok{"binomial"}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(mylogit,}\DataTypeTok{type=}\StringTok{"text"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+
+\begin{tiny}
+\begin{verbatim}
+
+## ...
+## 
+## Coefficients:
+##                               Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)                 -1.936e-01  4.579e-01  -0.423  0.67239    
+## duration                     2.666e-02  8.152e-03   3.270  0.00108 ** 
+## amount                       9.793e-05  3.670e-05   2.668  0.00763 ** 
+## installment                  2.361e-01  7.687e-02   3.072  0.00213 ** 
+## age                         -1.598e-02  7.348e-03  -2.175  0.02964 *  
+## factor(history)poor         -1.101e+00  2.490e-01  -4.424 9.67e-06 ***
+## factor(history)terrible     -1.849e+00  2.837e-01  -6.518 7.13e-11 ***
+## factor(purpose)usedcar      -1.702e+00  3.273e-01  -5.201 1.98e-07 ***
+## factor(purpose)goods/repair -7.551e-01  1.867e-01  -4.044 5.25e-05 ***
+## factor(purpose)edu          -1.473e-01  3.263e-01  -0.451  0.65166    
+## factor(purpose)biz          -8.501e-01  2.801e-01  -3.036  0.00240 ** 
+## factor(foreign)german       -1.322e+00  5.814e-01  -2.274  0.02298 *  
+## factor(rent)TRUE             5.702e-01  1.944e-01   2.934  0.00335 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## ...
+\end{verbatim}
+\end{tiny}
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit Demo: Build a design matrix}
+
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(credit}\OperatorTok{$}\NormalTok{foreign)}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+
+\begin{tiny}
+\begin{verbatim}
+##  Factor w/ 2 levels "foreign","german": 1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+\end{tiny}
+
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source}\NormalTok{(}\StringTok{"naref.R"}\NormalTok{)}
+\NormalTok{credit\textless{}{-}}\KeywordTok{naref}\NormalTok{(credit)}
+\KeywordTok{str}\NormalTok{(credit}\OperatorTok{$}\NormalTok{foreign)}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+
+\begin{tiny}
+\begin{verbatim}
+##  Factor w/ 3 levels NA,"foreign","german": 2 2 2 2 2 2 2 2 2 2 ...
+\end{verbatim}
+\end{tiny}
+
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{credx \textless{}{-}}\StringTok{ }\KeywordTok{model.matrix}\NormalTok{( Default }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{.}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{, }\DataTypeTok{data=}\NormalTok{credit)[,}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}
+\KeywordTok{dim}\NormalTok{(credx)}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+
+\begin{tiny}
+\begin{verbatim}
+## [1] 1000  121
+\end{verbatim}
+\end{tiny}
+
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{colnames}\NormalTok{(credx)[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{16}\NormalTok{,}\DecValTok{17}\NormalTok{,}\DecValTok{18}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+
+\begin{tiny}
+\begin{verbatim}
+## [1] "duration"             "amount"               "rentTRUE"            
+## [4] "duration:amount"      "duration:installment"
+\end{verbatim}
+\end{tiny}
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit Demo}
+
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{credx \textless{}{-}}\StringTok{ }\KeywordTok{sparse.model.matrix}\NormalTok{( Default }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{.}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{, }\DataTypeTok{data=}\NormalTok{credit)[,}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}
+\KeywordTok{head}\NormalTok{(credx)}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+
+\begin{tiny}
+\begin{verbatim}
+## 6 x 121 sparse Matrix of class "dgCMatrix"
+##                                                                                
+## 1  6 1169 4 67 . . 1 . . 1 . . 1 . 1 .   7014 24  402 .  .  6  . .  6  . .  6 .
+## 2 48 5951 2 22 . 1 . . . 1 . . 1 . 1 . 285648 96 1056 . 48  .  . . 48  . . 48 .
+## 3 12 2096 2 49 . . 1 . . . 1 . 1 . 1 .  25152 24  588 .  . 12  . .  . 12 . 12 .
+## 4 42 7882 2 45 . 1 . . . 1 . . 1 . 1 . 331044 84 1890 . 42  .  . . 42  . . 42 .
+## 5 24 4870 3 53 . 1 . 1 . . . . 1 . 1 . 116880 72 1272 . 24  . 24 .  .  . . 24 .
+## 6 36 9055 2 35 . 1 . . . . 1 . 1 . 1 . 325980 72 1260 . 36  .  . .  . 36 . 36 .
+##                                                                               
+
+\end{verbatim}
+\end{tiny}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit Demo}
+
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{default \textless{}{-}}\StringTok{ }\NormalTok{credit}\OperatorTok{$}\NormalTok{Default}
+\NormalTok{credscore \textless{}{-}}\StringTok{ }\KeywordTok{cv.gamlr}\NormalTok{(credx, default, }\DataTypeTok{family=}\StringTok{"binomial"}\NormalTok{, }\DataTypeTok{verb=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+\begin{tiny}
+
+\begin{verbatim}
+## fold 1,2,3,4,5,done.
+\end{verbatim}
+\end{tiny}
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(credscore)}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+
+\begin{figure}[H] \centering
+            \captionsetup{justification=centering}
+              \includegraphics[scale=0.4]{figures/lambdas} 
+ \end{figure}
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit Demo}
+
+\begin{scriptsize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#\# What are the underlying default probabilities}
+\CommentTok{\#\# In sample probability estimates}
+\NormalTok{pred \textless{}{-}}\StringTok{ }\KeywordTok{predict}\NormalTok{(credscore}\OperatorTok{$}\NormalTok{gamlr, credx, }\DataTypeTok{type=}\StringTok{"response"}\NormalTok{)}
+\NormalTok{pred \textless{}{-}}\StringTok{ }\KeywordTok{drop}\NormalTok{(pred) }\CommentTok{\# remove the sparse Matrix formatting}
+\KeywordTok{boxplot}\NormalTok{(pred }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{default, }\DataTypeTok{xlab=}\StringTok{"default"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"prob of default"}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"pink"}\NormalTok{,}\StringTok{"dodgerblue"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+\end{scriptsize}
+
+\begin{figure}[H] \centering
+            \captionsetup{justification=centering}
+              \includegraphics[scale=0.5]{figures/box_plots}                            
+ \end{figure}
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit Demo Misclassification Rates}
+
+\begin{itemize}
+  \item A classification rule, or cutoff, is the probability $p$ at which you predict
+  \medskip
+  \begin{itemize}
+    \item $\hat y_i =0$ if $p_i < p$
+    \item $\hat y_i = 1$ if $p_i < p$
+  \end{itemize}
+  \bigskip
+  \item We have two types of error associated with this that we can use as a measure of performance
+  \begin{align}
+     False\,Positive\,Rate&=\frac{expected\,\,\#\,\,false\,\,positives}{\#\,\,classified \,\,positive} \nonumber \\
+     False\,Negative\,Rate&=\frac{expected\,\,\#\,\,false\,\,negatives}{\#\,\,classified \,\,negative} 
+  \end{align}
+     
+  \item Another measure of performance is using the number of {\it correct} classifications
+  \begin{itemize}
+  \item {\it Sensitivity} proportion of true $y=1$ classified as such
+  \item {\it Specificity} proportion of true $y=0$ classified as such
+  \end{itemize}
+  
+\end{itemize}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit Demo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rule \textless{}{-}}\StringTok{ }\DecValTok{1}\OperatorTok{/}\DecValTok{2} 
+\KeywordTok{sum}\NormalTok{( (pred}\OperatorTok{\textgreater{}}\NormalTok{rule)[default}\OperatorTok{==}\DecValTok{0}\NormalTok{] )}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(pred}\OperatorTok{\textgreater{}}\NormalTok{rule) }\CommentTok{\#\# false positive rate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3189655
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{( (pred}\OperatorTok{\textless{}}\NormalTok{rule)[default}\OperatorTok{==}\DecValTok{1}\NormalTok{] )}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(pred}\OperatorTok{\textless{}}\NormalTok{rule) }\CommentTok{\#\# false negative rate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{( (pred}\OperatorTok{\textgreater{}}\NormalTok{rule)[default}\OperatorTok{==}\DecValTok{1}\NormalTok{] )}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(default}\OperatorTok{==}\DecValTok{1}\NormalTok{) }\CommentTok{\#\# sensitivity}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2633333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{( (pred}\OperatorTok{\textless{}}\NormalTok{rule)[default}\OperatorTok{==}\DecValTok{0}\NormalTok{] )}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(default}\OperatorTok{==}\DecValTok{0}\NormalTok{) }\CommentTok{\#\# specificity}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9471429
+\end{verbatim}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit Demo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rule \textless{}{-}}\StringTok{ }\DecValTok{1}\OperatorTok{/}\DecValTok{5} 
+
+\KeywordTok{sum}\NormalTok{( (pred}\OperatorTok{\textgreater{}}\NormalTok{rule)[default}\OperatorTok{==}\DecValTok{0}\NormalTok{] )}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(pred}\OperatorTok{\textgreater{}}\NormalTok{rule) }\CommentTok{\#\# false positive rate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6059744
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{( (pred}\OperatorTok{\textless{}}\NormalTok{rule)[default}\OperatorTok{==}\DecValTok{1}\NormalTok{] )}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(pred}\OperatorTok{\textless{}}\NormalTok{rule) }\CommentTok{\#\# false negative rate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.07744108
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{( (pred}\OperatorTok{\textgreater{}}\NormalTok{rule)[default}\OperatorTok{==}\DecValTok{1}\NormalTok{] )}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(default}\OperatorTok{==}\DecValTok{1}\NormalTok{) }\CommentTok{\#\# sensitivity}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9233333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{( (pred}\OperatorTok{\textless{}}\NormalTok{rule)[default}\OperatorTok{==}\DecValTok{0}\NormalTok{] )}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(default}\OperatorTok{==}\DecValTok{0}\NormalTok{) }\CommentTok{\#\# specificity}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3914286
+\end{verbatim}
+
+\end{frame}
+
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{ROC}
+
+
+\begin{figure}[H] \centering
+            \captionsetup{justification=centering}
+              \includegraphics[scale=0.5]{figures/roc}                            
+ \end{figure}
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Logit Demo}
+
+
+\begin{figure}[H] \centering
+            \captionsetup{justification=centering}
+              \includegraphics[scale=0.5]{figures/tiles} 
+ \end{figure}
+
+\end{frame}
+
+
+%----------------------------------------------------------------------%
+\section{Review \& Next Steps}
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Review \& Next Steps}
+  
+\begin{itemize} 
+    \item Today:
+    \medskip
+    \begin{itemize} 
+      \item KNN
+        \begin{itemize}  
+            \item Intuitive
+            \item Not very useful in practice, curse of dimensionality
+        \end{itemize}      
+     \medskip   
+    \item Logit
+    \begin{itemize}  
+            \item \texttt{gamlr}
+            \item Exploit sparcity
+            \item Model evaluation
+            \item Careful with naive models
+        \end{itemize}      
+
+
+    \end{itemize}
+    \bigskip  
+  \item  Next class:  Classification (cont.)
+
+
+\bigskip  
+\item Questions? Questions about software? 
+
+\end{itemize}
+\end{frame}
 %----------------------------------------------------------------------%
 \section{Further Readings}
 %----------------------------------------------------------------------%
