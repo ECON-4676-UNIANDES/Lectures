@@ -468,7 +468,6 @@ p &> \frac{1}{2} \\ \nonumber
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#Load the required packages}
-\KeywordTok{library}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{) }\CommentTok{\#for data wrangling}
 \KeywordTok{library}\NormalTok{(}\StringTok{"class"}\NormalTok{) }\CommentTok{\#for KNN}
 \KeywordTok{library}\NormalTok{(}\StringTok{"MASS"}\NormalTok{) }\CommentTok{\# a library of example datasets}
 \CommentTok{\#Read the data}
@@ -547,10 +546,13 @@ Refractive index and chemical composition for six possible glass types: float gl
 \frametitle{K-Nearest Neighbors}
 
 \begin{itemize}
-  \item Run \texttt{Knn}
-  \item Make sure you have numeric matrices of training data $x$ values, with labels $y$
-  \item Also need to provide new $test$ values where you would like to predict
-  \item Note that there's no model do fit, \texttt{Knn}, just counts neighbors for each observation in \texttt{test}
+  \item Before running \texttt{Knn}
+  \begin{itemize}
+    \item Make sure you have numeric matrices of training data $x$ values, with labels $y$
+    \item Also need to provide new $test$ values where you would like to predict
+    \item Note that there's no model do fit, \texttt{Knn}, just counts neighbors for each observation in \texttt{test}
+  \end{itemize}
+  
 \end{itemize}
 \begin{scriptsize}
 \begin{Shaded}
@@ -593,6 +595,7 @@ Refractive index and chemical composition for six possible glass types: float gl
     \item H.W. try for different seed, (Taddy's is 80\% and 70\%)
   \end{itemize}
   \item There are some major problems with practical implications
+  \medskip
   \begin{itemize}
   \item Knn predictions are unstable as a function of $K$
     \end{itemize}
