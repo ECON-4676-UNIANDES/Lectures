@@ -22,13 +22,14 @@ rm(pkg)
 # Example 1: Wikipedia's counties GDP -------------------------------------
 web_page<-read_html("https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)")
 
+
 #css selector
 table1<- web_page %>% 
   html_node('table.wikitable:nth-child(15) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > table:nth-child(1)') %>% 
   html_table()
 
 #With xpath
-table1<- web_page %>% 
+table1b<- web_page %>% 
                     html_node(xpath="/html/body/div[3]/div[3]/div[5]/div[1]/table[3]/tbody/tr[2]/td[1]/table") %>% 
                     html_table()
 
@@ -44,7 +45,6 @@ books<- books_page %>%
 
 
 #get some atributes from the first book
-selector = 
 node<-books_page %>%  html_node("li.col-xs-6:nth-child(1) > article:nth-child(1) > h3:nth-child(3) > a:nth-child(1)")
 node_text<-html_text(node)
 node_links<-html_attr(node, "href")
@@ -82,3 +82,11 @@ details_node<- book_page %>%html_node(".table") %>% html_table
 
 #get links to all books in page
 links<-books_page %>% html_nodes("article > h3 > a") %>% html_attr("href")
+
+
+#delay
+Sys.sleep(30)
+
+#con wget, make sure to have wget install (brew install)
+link<-lista de links
+system(paste0("'wget",link,"'")
