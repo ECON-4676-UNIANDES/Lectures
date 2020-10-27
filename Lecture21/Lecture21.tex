@@ -344,36 +344,6 @@ f(x) = \sum_{m=1}^M c_m I(x\in R_m)
 
  \begin{figure}[H] \centering
             \captionsetup{justification=centering}
-              \includegraphics[scale=0.4]{figures/cart_2}                           
- \end{figure}
-
-\end{column}
-\end{columns}
-
-\end{frame}
-%----------------------------------------------------------------------%
-\begin{frame}[fragile]
-\frametitle{Trees: Background}
-
-
-\begin{columns}[T] % align columns
-\begin{column}{.42\textwidth}
-  
-\begin{enumerate}
-\item Tree-based methods partition the feature space into a set of rectangles,
-\item  fit a simple model (like a constant) in each one. 
-\begin{align}
-f(x) = \sum_{m=1}^M c_m I(x\in R_m)
-\end{align}
-\end{enumerate}
-
-
-\end{column}  
-\hfill
-\begin{column}{.48\textwidth}
-
- \begin{figure}[H] \centering
-            \captionsetup{justification=centering}
               \includegraphics[scale=0.4]{figures/cart_3}                           
  \end{figure}
 
@@ -545,10 +515,12 @@ R_1(j,s)=\{X|X_j\leq s\} \,\,\, \& \,\,\, R_2(j,s)=\{X|X_j\geq s\}
 \begin{frame}[fragile]
 \frametitle{Regression Trees}
 \begin{itemize}
-\item We grew our Tree, now how do we stop?
-
+\item We grew our tree, now how do we stop?
+\medskip
 \item A tree too big, overfits the data (like a dummy for each observation)
+\medskip
 \item A smaller tree, with fewer splits (fewer regions $R_1,\dots,R_j$) might lead to lower variance and better interpretation at the cost of a little bias
+\medskip
 \item Solution: Pruning
 \begin{itemize}
  \item Grow a very large tree $T_0$
@@ -565,10 +537,14 @@ R_1(j,s)=\{X|X_j\leq s\} \,\,\, \& \,\,\, R_2(j,s)=\{X|X_j\geq s\}
 
 \begin{itemize}
 \item Draw back, estimate the CV error for every possible subtree would be too much (two many possible subtrees)
+\medskip
 \item Solution: {\it Cost complexity pruning (weakest link pruning)}
+\medskip
 \begin{itemize}
     \item We index the trees with $T$.
+    \medskip
     \item A subtree $T \in T_0$ is a tree obtained by collapsing the terminal nodes of another tree (cutting branches).
+    \medskip
     \item  $[T]$ = number of terminal nodes of tree $T$
 \end{itemize}
 \end{itemize}
@@ -585,7 +561,9 @@ R_1(j,s)=\{X|X_j\leq s\} \,\,\, \& \,\,\, R_2(j,s)=\{X|X_j\geq s\}
 
   \begin{itemize}
   \item where $Q_m (T)=\frac{1}{n_m} \sum_{x_i\in R_m} (y_i-\hat{c}_m)^2$ for regression trees
+  \medskip
   \item  $Q_m (T)$ penalizes heterogeneity (impurity) within each region, and the second term the number of regions.
+  \medskip
   \item  Objective: for a given $\alpha$, find the optimal pruning that minimizes $C_{\alpha}(T)$
   \end{itemize}
 \end{itemize}
@@ -599,11 +577,17 @@ R_1(j,s)=\{X|X_j\leq s\} \,\,\, \& \,\,\, R_2(j,s)=\{X|X_j\geq s\}
 \item Search mechanism for $T_\alpha$ (optimal pruning given $\alpha$).
 \begin{itemize}
 \item Result: for each $\alpha$ there is a unique subtree $T_\alpha$ that minimizes C$\alpha$ (T).
-\item Weakest link: successively eliminate the branches that produce the minimum increase in   $\sum_{m=1}^{[T]}  Q_m (T)$
-\item Idea: to remove branches is to collapse, this increases the variance, ergo, we collapse the least necessary partition.
+\medskip
+\item Weakest link: successively eliminate the branches that produce the minimum increase in   $\sum_{m=1}^{[T]} n_m  Q_m (T)$
+\medskip
+\item Idea: to remove branches is to collapse, this increases impurity, ergo, we collapse the least necessary partition.
+\medskip
 \item This eventually collapses at the initial node, but goes through a succession of trees, from the largest to the smallest, through the weakest link pruning process.
+\medskip
 \item Breiman et al. (1984): $T_\alpha$ belongs to this sequence. 
+\medskip
 \item Narrow your search to this succession of subtrees. 
+\medskip
 \item Choice of $\alpha$: cross validation.
 \end{itemize}
 
@@ -621,11 +605,14 @@ R_1(j,s)=\{X|X_j\leq s\} \,\,\, \& \,\,\, R_2(j,s)=\{X|X_j\geq s\}
 
 \begin{itemize}
 \item A classification tree is very similar to a regression tree except that we try to make a prediction for a categorical rather than continuous Y.
+\medskip
 \item For each region (or node) we predict the most common category among the training data within that region.
+\medskip
 \item The tree is grown (i.e. the splits are chosen) in exactly the same way as with a regression tree except that minimizing MSE no longer makes sense.
+\medskip
 \item There are several possible different criteria to use %such as the “gini index” and “cross-entropy” but the easiest one to think about is to minimize the error rate.
 \begin{itemize}
-  \item Misclasification error: $\frac{1}{n_m}\sum_{i\in R_m} I(y_i \neq k(m)=1-max_k (\hat{p}_{mk}$
+  \item Misclasification error: $\frac{1}{n_m}\sum_{i\in R_m} I(y_i \neq k(m))=1-max_k (\hat{p}_{mk})$
   \item Gini Index: $\sum_{k\neq k'}\hat{p}_{mk}\hat{p}_{mk'}=\sum_{k=1}^K \hat{p}_{mk}(1-\hat{p}_{mk})$
   \item Cross entropy or deviance: $- \sum_{k=1}^K \hat{p}_{mk}log(\hat{p}_{mk})$
 \end{itemize}
@@ -696,13 +683,17 @@ R_1(j,s)=\{X|X_j\leq s\} \,\,\, \& \,\,\, R_2(j,s)=\{X|X_j\geq s\}
 \item Pros: 
   \begin{itemize}
     \item Trees are very easy to explain to people (probably even easier than linear regression)
+    \medskip
     \item Trees can be plotted graphically, and are easily interpreted even by non-expert. More important variables at the top
+    \medskip
     \item They work fine on both classification and regression problems
   \end{itemize}
 
+\bigskip
 \item  Cons:
   \begin{itemize}
-    \item Trees are not very accurate or robust (Bagging, random forests y boosting to the rescue)
+    \item Trees are not very accurate or robust (bagging, random forests and boosting to the rescue)
+    \medskip
     \item If the structure is lineal, CART doesn't work well
   \end{itemize}
 \end{itemize}
