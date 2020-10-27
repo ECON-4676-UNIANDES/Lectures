@@ -473,6 +473,19 @@ f(x) = \sum_{m=1}^M c_m I(x\in R_m)
 
 \end{frame}
 %----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Trees: Background}
+
+
+
+\begin{figure}[H] \centering
+            \captionsetup{justification=centering}
+              \includegraphics[scale=0.4]{figures/hitters.png}                           
+ \end{figure}
+
+
+\end{frame}
+%----------------------------------------------------------------------%
 \subsection{Regression Trees}
 %----------------------------------------------------------------------%
 \begin{frame}[fragile]
@@ -495,7 +508,7 @@ R_1(j,s)=\{X|X_j\leq s\} \,\,\, \& \,\,\, R_2(j,s)=\{X|X_j\geq s\}
 \end{itemize}
 \end{frame}
 %----------------------------------------------------------------------%
-\begin{frame}[fragile]
+\begin{frame}<1>[label=how]
 \frametitle{Regression Trees}
 
 \begin{itemize}
@@ -504,6 +517,7 @@ R_1(j,s)=\{X|X_j\leq s\} \,\,\, \& \,\,\, R_2(j,s)=\{X|X_j\geq s\}
  \hat{c}_m =\frac{1}{n_m} \sum(y_i|x_i \in R_m)
 \end{align}
 \item Process is repeated inside each region. 
+\pause
 \item If the final tree has M regions then 
 \begin{align}
 \hat{f}(x) = \sum_{m=1}^M \hat{c}_m I(x \in R_m)
@@ -515,12 +529,27 @@ R_1(j,s)=\{X|X_j\leq s\} \,\,\, \& \,\,\, R_2(j,s)=\{X|X_j\geq s\}
 %----------------------------------------------------------------------%
 \begin{frame}[fragile]
 \frametitle{Regression Trees}
+
+
+\begin{figure}[H] \centering
+            \captionsetup{justification=centering}
+              \includegraphics[scale=0.4]{figures/hitters.png}                           
+ \end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------%
+%----------------------------------------------------------------------%
+\againframe<2>{how}
+
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Regression Trees}
 \begin{itemize}
 \item We grew our Tree, now how do we stop?
 
 \item A tree too big, overfits the data (like a dummy for each observation)
 \item A smaller tree, with fewer splits (fewer regions $R_1,\dots,R_j$) might lead to lower variance and better interpretation at the cost of a little bias
-\item One solution: Pruning
+\item Solution: Pruning
 \begin{itemize}
  \item Grow a very large tree $T_0$
  \item Prune it to get a {\it subtree}
