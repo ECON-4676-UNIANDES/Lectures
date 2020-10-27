@@ -785,30 +785,7 @@ R_1(j,s)=\{X|X_j\leq s\} \,\,\, \& \,\,\, R_2(j,s)=\{X|X_j\geq s\}
 \CommentTok{\#\# note across the top is \textquotesingle{}average number of observations per leaf\textquotesingle{}; }
 \KeywordTok{plot}\NormalTok{(cvpst, }\DataTypeTok{pch=}\DecValTok{21}\NormalTok{, }\DataTypeTok{bg=}\DecValTok{8}\NormalTok{, }\DataTypeTok{type=}\StringTok{"p"}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{, }\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{65}\NormalTok{,}\DecValTok{100}\NormalTok{))}
 \NormalTok{pstcut \textless{}{-}}\StringTok{ }\KeywordTok{prune.tree}\NormalTok{(pstree, }\DataTypeTok{best=}\DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\end{scriptsize}
 
-\begin{figure}[H] \centering
-            \captionsetup{justification=centering}
-              \includegraphics[scale=0.55]{figures/unnamed-chunk-5-1.pdf}
- \end{figure}
-
-
-\end{frame}
-%----------------------------------------------------------------------%
-\begin{frame}[fragile]
-\frametitle{CART Demo: Regression}
-
-\begin{scriptsize}
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mai=}\KeywordTok{c}\NormalTok{(.}\DecValTok{8}\NormalTok{,.}\DecValTok{8}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\FloatTok{0.2}\NormalTok{), }\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pstcut, }\DataTypeTok{col=}\DecValTok{8}\NormalTok{)}
-\KeywordTok{text}\NormalTok{(pstcut)}
-\KeywordTok{plot}\NormalTok{(prostate[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lcp"}\NormalTok{,}\StringTok{"lpsa"}\NormalTok{)], }\DataTypeTok{cex=}\KeywordTok{exp}\NormalTok{(prostate}\OperatorTok{$}\NormalTok{lca)}\OperatorTok{*}\NormalTok{.}\DecValTok{2}\NormalTok{)}
-\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{.}\DecValTok{261624}\NormalTok{, }\DataTypeTok{col=}\DecValTok{4}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{2}\NormalTok{,.}\DecValTok{261624}\NormalTok{), }\DataTypeTok{y=}\KeywordTok{c}\NormalTok{(}\FloatTok{2.30257}\NormalTok{,}\FloatTok{2.30267}\NormalTok{), }\DataTypeTok{col=}\DecValTok{4}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 \end{scriptsize}
