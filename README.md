@@ -49,5 +49,5 @@
 21. Lecture 21 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture21/Lecture21.pdf)\] [[Link Recording Zoom Class](https://www.dropbox.com/sh/6rhiqu296sgtfie/AACVHJ7omt-MraI3T8qLDS2Ba?dl=0)\]
 
 
-22. Lecture 22 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture22/Lecture22.pdf)\] [[Link Recording Zoom Class]()\]
+22. Lecture 22 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture22/Lecture22.pdf)\] [[Link Recording Zoom Class](https://www.dropbox.com/sh/c45hss7gbuhw48e/AABrpxIwxt0g3OxeQWMOun50a?dl=0)\]
 
