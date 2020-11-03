@@ -51,3 +51,5 @@
 
 22. Lecture 22 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture22/Lecture22.pdf)\] [[Link Recording Zoom Class](https://www.dropbox.com/sh/c45hss7gbuhw48e/AABrpxIwxt0g3OxeQWMOun50a?dl=0)\]
 
+23. Lecture 23 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture23/Lecture23.pdf)\] [[Link Recording Zoom Class]()\]
+
