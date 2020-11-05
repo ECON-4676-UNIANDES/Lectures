@@ -1,0 +1,780 @@
+\documentclass[
+  shownotes,
+  xcolor={svgnames},
+  hyperref={colorlinks,citecolor=DarkBlue,linkcolor=DarkRed,urlcolor=DarkBlue}
+  , aspectratio=169]{beamer}
+\usepackage{animate}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{mathpazo}
+%\usepackage{xcolor}
+\usepackage{multimedia}
+\usepackage{fancybox}
+\usepackage[para]{threeparttable}
+\usepackage{multirow}
+\setcounter{MaxMatrixCols}{30}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{lscape}
+\usepackage[compatibility=false,font=small]{caption}
+\usepackage{booktabs}
+\usepackage{ragged2e}
+\usepackage{chronosys}
+\usepackage{appendixnumberbeamer}
+\usepackage{animate}
+\setbeamertemplate{caption}[numbered]
+\usepackage{color}
+%\usepackage{times}
+\usepackage{tikz}
+\usepackage{comment} %to comment
+%% BibTeX settings
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\bibpunct{(}{)}{,}{a}{,}{,}
+\setbeamertemplate{bibliography item}{[\theenumiv]}
+
+% Defines columns for bespoke tables
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+\usepackage{xfrac}
+
+
+\usepackage{multicol}
+\setlength{\columnsep}{0.5cm}
+
+% Theme and colors
+\usetheme{Boadilla}
+
+% I use steel blue and a custom color palette. This defines it.
+\definecolor{andesred}{HTML}{af2433}
+
+% Other options
+\providecommand{\U}[1]{\protect\rule{.1in}{.1in}}
+\usefonttheme{serif}
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{enumerate items}[square]
+\setbeamertemplate{section in toc}[circle]
+
+\makeatletter
+
+\definecolor{mybackground}{HTML}{82CAFA}
+\definecolor{myforeground}{HTML}{0000A0}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=red}
+\setbeamercolor{example text}{fg=black}
+
+\setbeamercolor{background canvas}{fg=myforeground, bg=white}
+\setbeamercolor{background}{fg=myforeground, bg=mybackground}
+
+\setbeamercolor{palette primary}{fg=black, bg=gray!30!white}
+\setbeamercolor{palette secondary}{fg=black, bg=gray!20!white}
+\setbeamercolor{palette tertiary}{fg=white, bg=andesred}
+
+\setbeamercolor{frametitle}{fg=andesred}
+\setbeamercolor{title}{fg=andesred}
+\setbeamercolor{block title}{fg=andesred}
+\setbeamercolor{itemize item}{fg=andesred}
+\setbeamercolor{itemize subitem}{fg=andesred}
+\setbeamercolor{itemize subsubitem}{fg=andesred}
+\setbeamercolor{enumerate item}{fg=andesred}
+\setbeamercolor{item projected}{bg=gray!30!white,fg=andesred}
+\setbeamercolor{enumerate subitem}{fg=andesred}
+\setbeamercolor{section number projected}{bg=gray!30!white,fg=andesred}
+\setbeamercolor{section in toc}{fg=andesred}
+\setbeamercolor{caption name}{fg=andesred}
+\setbeamercolor{button}{bg=gray!30!white,fg=andesred}
+
+
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+
+\usepackage{tikz}
+% Tikz settings optimized for causal graphs.
+\usetikzlibrary{shapes,decorations,arrows,calc,arrows.meta,fit,positioning}
+\tikzset{
+    -Latex,auto,node distance =1 cm and 1 cm,semithick,
+    state/.style ={ellipse, draw, minimum width = 0.7 cm},
+    point/.style = {circle, draw, inner sep=0.04cm,fill,node contents={}},
+    bidirected/.style={Latex-Latex,dashed},
+    el/.style = {inner sep=2pt, align=left, sloped}
+}
+
+
+\makeatother
+
+
+
+
+
+
+%%%%%%%%%%%%%%% BEGINS DOCUMENT %%%%%%%%%%%%%%%%%%
+
+\begin{document}
+ 
+\title[Lecture 24]{Lecture 24:  Causal Trees (Cont.)}
+\subtitle{Big Data and Machine Learning for Applied Economics \\ Econ 4676}
+\date{\today}
+
+\author[Sarmiento-Barbieri]{Ignacio Sarmiento-Barbieri}
+\institute[Uniandes]{Universidad de los Andes}
+
+
+\begin{frame}[noframenumbering]
+\maketitle
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%----------------------------------------------------------------------% 
+
+\begin{frame}
+\frametitle{Agenda}
+
+\tableofcontents
+
+\end{frame}
+%----------------------------------------------------------------------%
+\section{Recap: Causal Trees}
+\subsection{Causality Review: ATE, CATE, HTE}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Treatment Effects}
+
+\begin{itemize}
+\item We observe a sequence of triples $\{(W_i, Y_i, X_i)\}_{i}^{N}$, where
+\medskip
+
+\begin{itemize}
+
+\item \(W_{i} \in \{0, 1\}\): is a binary variable indicating whether the individual was treated (\(1\)) or not (\(0\))
+\medskip
+\item \(Y_{i}^{obs} \in \mathbb{R}\): a real variable indicating the observed outcome for that individual
+\medskip
+\item \(X_{i}\): is a \(p\)-dimensional vector of observable pre-treatment characteristics
+\end{itemize}
+\medskip
+ \item Moreover, in the Neyman-Rubin potential-outcomes framework, we will denote by 
+ \medskip
+ \begin{itemize}
+\item \(Y_{i}(1)\): the outcome unit \(i\) would attain if they received the  treatment
+\medskip
+\item \(Y_{i}(0)\): the outcome unit \(i\) would attain if they were part of the control group
+\end{itemize}
+
+\end{itemize}
+
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Treatment Effects}
+ The individual treatment effect for subject $i$ can then be written as 
+
+$$Y_i(1) - Y_i(0)$$
+
+Unfortunately, in our data we can only observe one of these two potential outcomes. 
+
+\begin{table}[H] 
+\footnotesize \centering
+ \begin{threeparttable} \captionsetup{justification=centering}   
+\begin{tabular}{@{\extracolsep{5pt}}ccccc} \\[-1.8ex]
+\hline \hline \\[-1.8ex]
+Education & Treated & No Subsidy & Subsidy & Treatment effect \\
+$(X_{i})$ & $W_i$ & $Y_{i}(0)$ & $Y_{i}(1)$ & $\tau_i=Y_{i}(1)-Y_{i}(0)$ \\
+\midrule
+$High$ & $1$ & ?          & $Y_{1}(1)$      & ?\\
+$High$ & $0$ & $Y_{2}(0)$ & ?                & ? \\
+$Low$  & $0$ & $Y_{3}(0)$ & ?              & ? \\
+$Low$  & $1$ & ?          & $Y_{4}(1)$       & ? \\
+  \\[-1.8ex]\hline        \hline \\[-1.8ex]        
+  \end{tabular}         
+\end{threeparttable}       
+\end{table}       
+
+Using the potential outcome notation above, the observed outcome can also be written as
+
+\[Y_{i} = W_{i}Y_{i}(1) + (1-W_{i})Y_{i}(0)\]
+
+
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Average Treatment Effects}
+\begin{itemize}
+\item Computing the difference for each individual is impossible. 
+\medskip
+\item But we can get the Average Treatment Effect (ATE):
+
+  \begin{align}
+    \tau := E[Y_i(1) - Y_i(0)]
+  \end{align}
+  
+
+  \item Heterogeneous Treatment Effects: Same treatment may affect different individuals differently
+  \medskip
+  \item Conditional Average Treatment Effect (CATE)
+  \begin{align}
+    \tau(x) := E[Y_i(1) - Y_i(0)|X_i=x]
+  \end{align}
+\end{itemize}
+
+
+\end{frame}
+
+
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Heterogeneous Treatment Effects}
+
+\framesubtitle{Concerns}
+
+\begin{itemize}
+  \item Issues:
+  
+  \begin{itemize}
+  \item Ad hoc searches for particularly responsive subgroups may mistake noise for a true treatment effect. 
+  
+  \item Concerns about ex-post “data-mining” or  p-hacking
+    \begin{itemize}
+      \item preregistered analysis plan can protect against claims of data mining  
+      \item But may also prevent researchers from discovering unanticipated results and developing new hypotheses
+    \end{itemize}
+  \end{itemize}
+\medskip
+\item But how is researcher to predict all forms of heterogeneity in an environment with many covariates?
+\medskip
+\item Athey and Imbens to the rescue
+\begin{itemize}
+  \item Allow researcher to specify set of potential covariates
+  \item Data-driven search for heterogeneity in causal effects with valid standard errors
+\end{itemize}
+
+
+\end{itemize}
+
+
+\end{frame}
+
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Heterogeneous Treatment Effects}
+
+\begin{itemize}
+\item Before proceeding we need to make a couple of assumptions
+
+
+
+
+\item Assumption 1: Unconfoundedness
+\begin{align}
+Y_i(1), Y_i(0) \perp W_i \ | \ X_i
+\end{align}
+\begin{itemize}
+\item The \emph{unconfoundedness} assumption states that, once we condition on observable characteristics, the treatment assignment is independent to
+how each person would respond to the treatment. 
+\item i.e.,  the rule that determines whether or not a person is treated is determined completely by their observable characteristics. 
+\item This allows, for example, for experiments where people from different genders get treated with different probabilities, 
+\item {\bf rules out} experiments where people self-select into treatment due to some characteristic that is not observed in our data.
+
+\end{itemize}
+
+
+\end{itemize}
+
+
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Heterogeneous Treatment Effects}
+
+\begin{itemize}
+\item Assumption 2: Overlap
+\medskip
+\begin{align}
+\forall \ x \in \text{supp}\ (X), \qquad 0 < P\ (W = 1 \ | \ X = x)  < 1
+\end{align}
+
+  \begin{itemize}
+  \item The \emph{overlap} assumption states that at every point of the covariate space we can always find treated and control individuals.
+  \medskip
+  \item  i.e., in order to estimate the treatment effect for a person with particular  characteristics \(X_{i} = x\), we need to ensure that we are able to
+  observe treated and untreated people with those same characteristics so that we can compare their outcomes. 
+  \end{itemize}
+\end{itemize}
+
+
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\section{Causal Tree: Theory}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Causal Tree: Theory}
+
+
+
+\begin{itemize}
+  \item Work well in RCTs
+  \medskip
+  \item Issue: we do not observe the ground truth
+  \medskip
+  \item Honest estimation (Innovation):
+    \begin{itemize}
+      \item One sample to choose partition 
+      \medskip
+      \item One sample to estimate leaf effects
+      \medskip
+    \end{itemize}
+  \item Why is the split critical?
+  \medskip
+  \item Fitting both on the training sample risks overfitting: Estimating many “heterogeneous effects” that are really just noise idiosyncratic to the sample.
+  \medskip
+  \item We want to search for true heterogeneity, not noise
+\end{itemize}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Trees}
+\begin{itemize}
+\item A simple tree
+
+\begin{table}[]
+\begin{tabular}{lll}
+$MSE_0=\frac{1}{N}\sum(Y_i-\bar{Y})^2$ & \multicolumn{2}{l}{All observations} \\
+\\
+$MSE_1=\frac{1}{N}\sum(Y_i-\bar{Y}_{j:x_j\in l(x_i|\Pi)})^2$   & $X_i < c_1$      & $X_i \geq c_2$    
+\end{tabular}
+\end{table}
+\bigskip
+\item Partition $\Pi \in P$
+  \begin{align}
+  \left\{l_1=\{x_i : x_i< c_1\},l_2=\{x_i : x_i \geq c_2\} \right\}
+  \end{align}
+\item Prediction is 
+  \begin{align}
+  \hat{\mu}(x)=\bar{Y}_{j:x_j\in l(x_i|\Pi)}
+  \end{align}
+
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{The Honest Target: Athey and Imbens Innovation}
+
+\begin{itemize}
+\item Given a partition $\Pi$ define
+\begin{align}
+MSE_{\mu}(S^{te},S^{est},\Pi)=\frac{1}{\#(S^{te})}\sum_{i\in S^{te}}\left\{ \left(Y_{i}-\hat{\mu}(X_{i},S^{est},\Pi)\right)^{2}-Y_{i}^{2}\right\} 
+\end{align}
+
+
+\bigskip
+\item The expected MSE is the expectation of $MSE_{\mu}(S^{te},S^{est},\Pi)$ over estimation and test samples (independent)
+
+\begin{align}
+EMSE_{\mu}(\Pi)=E_{S^{te},S^{est}}\left[MSE_{\mu}(S^{te},S^{est},\Pi)\right]
+\end{align}
+
+
+\end{itemize}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{The Honest Target: Athey and Imbens Innovation}
+
+
+\begin{itemize}
+\item The ultimate goal is to construct and assess an algorithm $\pi(.)$ that maximizes the honest criterion
+
+\medskip
+\begin{align}
+max\,Q^{H}(\pi)=-E_{S^{te},S^{est},S^{tr}}\left[MSE_{\mu}(S^{te},S^{est},S^{tr},\pi(S^{tr})\right]
+\end{align}
+
+
+\item In CART the target is different (adaptive target)
+\medskip
+\begin{align}
+max\,Q^{C}(\pi)=-E_{S^{te},S^{tr}}\left[MSE_{\mu}(S^{te},S^{tr},\pi(S^{tr})\right]
+\end{align}
+
+
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{The Honest Criterion}
+
+\begin{align}
+max\,Q^{H}(\pi)=-E_{S^{te},S^{est},S^{tr}}\left[MSE_{\mu}(S^{te},S^{est},S^{tr},\pi(S^{tr})\right]
+\end{align}
+\bigskip
+
+$\,$ \\
+\bigskip
+
+$\,$\\
+\bigskip
+
+$\,$\\
+\bigskip
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{The Honest Criterion}
+
+\begin{itemize}
+  \item Understanding $EMSE_{\mu}(\Pi)$:
+\end{itemize}
+\begin{equation}
+-EMSE_{\mu}(\Pi)=-E_{S^{te},S^{est}}\left[\left(Y_{i}-\hat{\mu}(X_{i},S^{est},\Pi)\right)^{2}-Y_{i}^{2}\right]
+\end{equation}
+
+\[
+=-E_{S^{te},S^{est}}\left[\left(Y_{i}-\mu(X_{i},\Pi)+\mu(X_{i},\Pi)-\hat{\mu}(X_{i},S^{est},\Pi)\right)^{2}-Y_{i}^{2}\right]
+\]
+
+\[
+=-E_{S^{te},S^{est}}\left[\left(Y_{i}-\mu(X_{i},\Pi)\right)^{2}-Y_{i}^{2}\right]
+\]
+
+\[
+-E_{S^{te},S^{est}}\left[\left(\mu(X_{i},\Pi)-\hat{\mu}(X_{i},S^{est},\Pi)\right)^{2}\right]
+\]
+
+\[
+-E_{S^{te},S^{est}}\left[2\left(Y_{i}-\mu(X_{i},\Pi)\right)\left(\mu(X_{i},\Pi)-\hat{\mu}(X_{i},S^{est},\Pi)\right)^{2}\right]
+\]
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Heterogeneous Treatment Effects}
+
+
+
+
+\[
+=-E_{(Y_{i},X_{i}),S^{est}}\left[\left(Y_{i}-\mu(X_{i},\Pi)\right)^{2}-Y_{i}^{2}\right]-E_{X_{i},S^{est}}\left[\left(\mu(X_{i},\Pi)-\hat{\mu}(X_{i},S^{est},\Pi)\right)^{2}\right]
+\]
+
+\[
+=-E_{(Y_{i},X_{i}),S^{est}}\left[Y_{i}^{2}-2Y_{i}\mu(X_{i},\Pi)+\mu^{2}(X_{i},\Pi)-Y_{i}^{2}\right]-E_{X_{i},S^{est}}\left[\left(\mu(X_{i},\Pi)-\hat{\mu}(X_{i},S^{est},\Pi)\right)^{2}\right]
+\]
+
+\[
+=-E_{(Y_{i},X_{i}),S^{est}}\left[-2Y_{i}\mu(X_{i},\Pi)+\mu^{2}(X_{i},\Pi)\right]-E_{X_{i},S^{est}}\left[\left(\mu(X_{i},\Pi)-\hat{\mu}(X_{i},S^{est},\Pi)\right)^{2}\right]
+\]
+
+
+
+Note $E_{(Y_{i},X_{i}),S^{est}}(Y_{i})=E_{X_{i},s^{est}}\mu(X_{i},\Pi)$
+
+\[
+=-E_{(Y_{i},X_{i}),S^{est}}\left[\mu^{2}(X_{i},\Pi)\right]-E_{X_{i},S^{est}}\left[V(\hat{\mu}(X_{i},S^{est},\Pi))\right]
+\]
+
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{The Honest Criterion}
+
+\begin{itemize}
+ \item How to estimate this quantities?
+ \item First $E_{X_{i},S^{est}}\left[V(\hat{\mu}(X_{i},S^{est},\Pi))\right]$
+\end{itemize}
+
+\[
+V(\hat{\mu}(X_{i},S^{est},\Pi))=\frac{S_{S^{tr}}^{2}\left(l\left(x|\Pi\right)\right)}{N^{est}\left(l\left(x|\Pi\right)\right)}
+\]
+
+\[
+\hat{E}_{X_{i},S^{est}}\left[V(\hat{\mu}(X_{i},S^{est},\Pi))|i\in S^{te}\right]=\sum_{l}p_{l}\frac{S_{S^{tr}}^{2}\left(l\right)}{N^{est}\left(l\right)}
+\]
+
+\[
+=\sum_{l}\frac{1}{\#(l)}\frac{S_{S^{tr}}^{2}\left(l\right)}{N^{est}\left(l\right)}
+\]
+
+\[
+=\frac{1}{N^{est}}\sum_{l\in\Pi}S_{S^{tr}}^{2}\left(l\right)
+\]
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{The Honest Criterion}
+
+
+\begin{itemize}
+  \item Next $E_{(Y_{i},X_{i}),S^{est}}\left[\mu^{2}(X_{i},\Pi)\right]$
+  \item Note $V(\hat{\mu}|x,\Pi)=E(\hat{\mu}^{2}|x,\Pi)-\left[E(\hat{\mu}|x,\Pi)\right]^{2}$
+\end{itemize}
+
+
+
+
+\[
+\frac{S_{S^{tr}}^{2}\left(l\left(x|\Pi\right)\right)}{N^{tr}\left(l\left(x|\Pi\right)\right)}\approx\hat{\mu}^{2}(x|S^{tr},\Pi)-\mu^{2}(x|\Pi)
+\]
+
+\[
+\mu^{2}(x|\Pi)\approx\hat{\mu}^{2}(x|S^{tr},\Pi)-\frac{S_{S^{tr}}^{2}\left(l\left(x|\Pi\right)\right)}{N^{tr}\left(l\left(x|\Pi\right)\right)}
+\]
+
+\[
+\hat{E}_{X_{i}}\left(\mu^{2}(X_{i}|\Pi\right)\approx\frac{1}{N^{tr}}\sum_{i\in S^{tr}}\hat{\mu}^{2}(x|S^{tr},\Pi)-\sum_{l}\frac{1}{\#l}\frac{S_{S^{tr}}^{2}\left(l\right)}{N^{tr}/\#l}
+\]
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{The Honest Criterion}
+
+
+\begin{itemize}
+  \item Finally
+\end{itemize}
+
+\[
+-EMSE_{\mu}(\Pi)=\frac{1}{N^{tr}}\sum_{i\in S^{tr}}\hat{\mu}^{2}(x|S^{tr},\Pi)-\sum_{l}\frac{1}{N^{tr}}S_{S^{tr}}^{2}\left(l\right)-\frac{1}{N^{est}}\sum_{l\in\Pi}S_{S^{tr}}^{2}\left(l\right)
+\]
+
+\[
+=\frac{1}{N^{tr}}\sum_{i\in S^{tr}}\hat{\mu}^{2}(x|S^{tr},\Pi)-\left(\frac{1}{N^{tr}}+\frac{1}{N^{est}}\right)\sum_{l\in\Pi}S_{S^{tr}}^{2}\left(l\right)
+\]
+
+\end{frame}
+%----------------------------------------------------------------------%
+\subsection{Honest Inference for Treatment Effects}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Honest Inference for Treatment Effects}
+
+\begin{itemize}
+\item Given a tree $\Pi$, define for all x and both treatment levels w the population average outcome
+
+
+
+\[
+\mu(w,x|\Pi)=E\left[Y_{i}(w)|X_{i}\in l(x|\Pi)\right]
+\]
+
+\item The Average Treatment Effect
+
+\[
+\tau(x|\Pi)=E\left[Y_{i}(1)-Y_{i}(0)|X_{i}\in l(x|\Pi)\right]
+\]
+
+\[
+=\mu(1,x|\Pi)-\mu(0,x|\Pi)
+\]
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Honest Inference for Treatment Effects}
+
+\begin{itemize}
+  \item The estimated counterparts are
+
+
+
+
+\begin{align}
+\hat{\mu}(w,x|S,\Pi)=\frac{1}{\#\left(\left\{ i\in S_{w}:X_{i}\in l(x|\Pi)\right\} \right)}\sum_{i\in S_{w}:X_{i}\in l(x|\Pi)}Y_{i}^{obs}
+\end{align}
+
+\begin{align}
+\hat{\tau}(X,S,\Pi) = \hat{\mu}(1,x|S,\Pi) - \hat{\mu}(0,x|S,\Pi)
+\end{align}
+
+\item Define the MSE for treatment effects as
+
+\[
+MSE_{\tau}(S^{te},S^{est},\Pi)=\frac{1}{\#(S^{te})}\sum_{i\in S^{te}}\left\{ \left(\tau_{i}-\hat{\tau}(X_{i}|S^{est},\Pi\right)^{2}-\tau_{i}^{2}\right\} 
+\]
+
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Honest Inference for Treatment Effects}
+
+
+
+Adapt $EMSE_{\mu}$ to estimate $EMSE_{\tau}$
+
+\[
+-\hat{EMSE_{\mu}(S^{tr},S^{est},\Pi)}=\frac{1}{N^{tr}}\sum_{i\in S^{tr}}\hat{\mu}^{2}(X_{i}|S^{tr},\Pi)-\left(\frac{1}{N^{tr}}+\frac{1}{N^{est}}\right)\sum_{l\in\Pi}S_{S^{tr}}^{2}(l)
+\]
+
+for HTE
+
+\[
+-\hat{EMSE_{\tau}(S^{tr},S^{est},\Pi)=}\frac{1}{N^{tr}}\sum_{i\in S^{tr}}\hat{\tau}^{2}(X_{i}|S^{tr},\Pi)-\left(\frac{1}{N^{tr}}+\frac{1}{N^{est}}\right)\sum_{l\in\Pi}\left(\frac{S_{S_{treat}^{tr}}^{2}(l)}{p}+\frac{S_{S_{control}^{tr}}^{2}(l)}{(1-p)}\right)
+\]
+
+
+\end{frame}
+%----------------------------------------------------------------------%
+\subsection{Observational Studies with Unconfoundedness}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Observational Studies with Unconfoundedness}
+
+\begin{itemize}
+\item Athey and Imbens (2016):
+
+\medskip
+
+{\it ``The proposed methods can be adapted to observational studies under the assumption of unconfoundedness. In that case we need to modify the estimates within leaves to remove the bias from simple comparisons of treated and control units. There is a large literature on methods for doing so, ...., for example, we can do so by propensity score weighting. Efficiency will improve if we renormalize the weights within each leaf and within the treatment and control group when estimating treatment effects''}
+\end{itemize}
+
+\end{frame}
+%----------------------------------------------------------------------%
+\section{Causal Forests}
+%----------------------------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Causal Forests}
+
+\begin{itemize}
+\item Trees can be noise. We can use forests
+\begin{itemize}
+ \item Draw a sample bootstrap of size s
+ \item Split the sample into $Tr$ and $Est$
+ \item Use $Tr$ to grow the tree
+ \item Use $Est$ to estimate the leaf-specific effects
+\end{itemize}
+\item Advantages
+\begin{itemize}
+  \item Consistent for $\tau(x)$
+  \item Asymptotically Normal
+  \item ``Auto'' search for HTE  
+\end{itemize}
+\item Disadvantage
+\begin{itemize}
+ \item Sample splitting (noisier estimates)
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------%
+%----------------------------------------------------------------------%
+\section{Review
+ \& Next Steps}
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Review \& Next Steps}
+  
+\begin{itemize} 
+    \item Problem: we never observe $t_i$ unlike prediction that we observe $Y_i$
+    \medskip
+    \item Causal Trees search for leaves with
+    \begin{itemize}
+      \item HTE across leaves
+      \item precisely-estimated leaf effects
+    \end{itemize}
+    \item Key is the honest Criterion
+    \medskip
+    \item Work well with RCTs
+    \medskip
+    \item  With selection on observables, recommendation is propensity forests?
+    \medskip  
+    \item  Next class:  Causal forests demo
+    \medskip  
+    \item Questions? Questions about software? 
+
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------%
+\section{Further Readings}
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Further Readings}
+
+\begin{itemize}
+
+  \item Athey, S., \& Imbens, G. (2016). Recursive partitioning for heterogeneous causal effects. Proceedings of the National Academy of Sciences, 113(27), 7353-7360.
+  \medskip
+  \item Lundberg, I (2017). Causal forests. A tutorial in high dimensional causal inference. Mimeo
+  \medskip
+  \item Taddy, M. (2019). Business data science: Combining machine learning and economics to optimize, automate, and accelerate business decisions. McGraw Hill Professional.
+  
+
+  
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+%----------------------------------------------------------------------%
+%----------------------------------------------------------------------%
+\end{document}
+%----------------------------------------------------------------------%
+%----------------------------------------------------------------------%
+
