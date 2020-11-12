@@ -52,9 +52,8 @@
 
 23. Lecture 23 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture23/Lecture23.pdf)\] [[Link Recording Zoom Class](https://www.dropbox.com/sh/axogcq4hykc3fjd/AACK0exQJh0SALp2YL8n0qXPa?dl=0)\]
 
-24. Lecture 24 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture24/Lecture24.pdf)\] [[Link Recording Zoom Class](https://www.dropbox.com/sh/fpotfybke4bug5x/AADmOqyv5l-fCXQ_ouuMJEqfa?dl=0)\]
+24. Lecture 24 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture24/Lecture24.pdf)\] [[Link Recording Zoom Class](https://www.dropbox.com/sh/atx3hobuqvywt7n/AADjZwc17grX5xMVoBVLVuAma?dl=0)\]
 
-25. Lecture 25 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture25/Lecture25.pdf)\] [[Link Recording Zoom Class]()\]
+25. Lecture 25 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture25/Lecture25.pdf)\] [[Link Recording Zoom Class](https://www.dropbox.com/sh/sg0namzz4hhpk36/AAAEyzFqPfEa62toYRLvZNE3a?dl=0)\]
 
-
-26. Lecture 26 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture26/Lecture26.pdf)\] [[Link Recording Zoom Class]()\]
+26. Lecture 26 \[[Slides](https://github.com/ECON-4676-UNIANDES/Lectures/blob/master/Lecture26/Lecture26.pdf)\] [[Link Recording Zoom Class](https://www.dropbox.com/sh/t1oqqug2g73edc0/AADmZISOyPE2SCaXMSNgwoLXa?dl=0)\]
