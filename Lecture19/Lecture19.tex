@@ -657,7 +657,7 @@ m(X) &= f(X|Y=1)p(Y=1) + f(X|Y=0)p(Y=0) \nonumber \\
   \item Then under the equal variance assumption
   \begin{align}
   \frac{p (Y=1|X)}{1-p (Y=1|X} &= \frac{f(X|Y=1)p(Y=1)}{f(X|Y=0)(1-p(Y=1))} \\
-                                &= \frac{p(Y=1)exp((x-\mu_1)^2)}{(1-p(Y=1))exp((x-\mu_0)^2)} 
+                                &= \frac{p(Y=1)exp(\frac{-1}{2\sigma_1^2}(x-\mu_1)^2)}{(1-p(Y=1))exp(\frac{-1}{2\sigma_1^2}(x-\mu_0)^2)} 
   \end{align}
 \end{itemize}
 
@@ -669,8 +669,8 @@ m(X) &= f(X|Y=1)p(Y=1) + f(X|Y=0)p(Y=0) \nonumber \\
   \item Taking logs
 
 \begin{align}
-  log \left( \frac{p (Y=1|X)}{1-p (Y=1|X}\right)  &= log(\frac{p(Y=1)}{(1-p(Y=1))}+(x-\mu_1)^2-(x-\mu_0)^2 \\
-  &= log(\frac{p(Y=1)}{(1-p(Y=1))}+\mu^2_1-\mu^2_0-2(\mu_1-\mu_0)x \\
+   log \left( \frac{p (Y=1|X)}{1-p (Y=1|X}\right)  &= log(\frac{p(Y=1)}{(1-p(Y=1))}-\frac{1}{2\sigma^2}(x-\mu_1)^2+\frac{1}{2\sigma^2}(x-\mu_0)^2 \\
+  &= log(\frac{p(Y=1)}{(1-p(Y=1))}+\frac{1}{2\sigma^2}\left(\mu^2_0-\mu^2_1\right)+\frac{1}{\sigma^2}(\mu_1-\mu_0)x \\
   &= \gamma_1 +\gamma_2 X
   \end{align}  
   \item under the assumption of equal variance the discrimination function is lineal
