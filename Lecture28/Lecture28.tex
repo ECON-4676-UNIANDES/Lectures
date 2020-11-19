@@ -1,0 +1,272 @@
+\documentclass[
+  shownotes,
+  xcolor={svgnames},
+  hyperref={colorlinks,citecolor=DarkBlue,linkcolor=DarkRed,urlcolor=DarkBlue}
+  ]{beamer}
+\usepackage{animate}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{mathpazo}
+%\usepackage{xcolor}
+\usepackage{multimedia}
+\usepackage{fancybox}
+\usepackage[para]{threeparttable}
+\usepackage{multirow}
+\setcounter{MaxMatrixCols}{30}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{lscape}
+\usepackage[compatibility=false,font=small]{caption}
+\usepackage{booktabs}
+\usepackage{ragged2e}
+\usepackage{chronosys}
+\usepackage{appendixnumberbeamer}
+\usepackage{animate}
+\setbeamertemplate{caption}[numbered]
+\usepackage{color}
+%\usepackage{times}
+\usepackage{tikz}
+\usepackage{comment} %to comment
+%% BibTeX settings
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\bibpunct{(}{)}{,}{a}{,}{,}
+\setbeamertemplate{bibliography item}{[\theenumiv]}
+
+% Defines columns for bespoke tables
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+\usepackage{xfrac}
+
+
+\usepackage{multicol}
+\setlength{\columnsep}{0.5cm}
+
+% Theme and colors
+\usetheme{Boadilla}
+
+% I use steel blue and a custom color palette. This defines it.
+\definecolor{andesred}{HTML}{af2433}
+
+% Other options
+\providecommand{\U}[1]{\protect\rule{.1in}{.1in}}
+\usefonttheme{serif}
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{enumerate items}[square]
+\setbeamertemplate{section in toc}[circle]
+
+\makeatletter
+
+\definecolor{mybackground}{HTML}{82CAFA}
+\definecolor{myforeground}{HTML}{0000A0}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=red}
+\setbeamercolor{example text}{fg=black}
+
+\setbeamercolor{background canvas}{fg=myforeground, bg=white}
+\setbeamercolor{background}{fg=myforeground, bg=mybackground}
+
+\setbeamercolor{palette primary}{fg=black, bg=gray!30!white}
+\setbeamercolor{palette secondary}{fg=black, bg=gray!20!white}
+\setbeamercolor{palette tertiary}{fg=white, bg=andesred}
+
+\setbeamercolor{frametitle}{fg=andesred}
+\setbeamercolor{title}{fg=andesred}
+\setbeamercolor{block title}{fg=andesred}
+\setbeamercolor{itemize item}{fg=andesred}
+\setbeamercolor{itemize subitem}{fg=andesred}
+\setbeamercolor{itemize subsubitem}{fg=andesred}
+\setbeamercolor{enumerate item}{fg=andesred}
+\setbeamercolor{item projected}{bg=gray!30!white,fg=andesred}
+\setbeamercolor{enumerate subitem}{fg=andesred}
+\setbeamercolor{section number projected}{bg=gray!30!white,fg=andesred}
+\setbeamercolor{section in toc}{fg=andesred}
+\setbeamercolor{caption name}{fg=andesred}
+\setbeamercolor{button}{bg=gray!30!white,fg=andesred}
+
+
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+
+\usepackage{tikz}
+% Tikz settings optimized for causal graphs.
+\usetikzlibrary{shapes,decorations,arrows,calc,arrows.meta,fit,positioning}
+\tikzset{
+    -Latex,auto,node distance =1 cm and 1 cm,semithick,
+    state/.style ={ellipse, draw, minimum width = 0.7 cm},
+    point/.style = {circle, draw, inner sep=0.04cm,fill,node contents={}},
+    bidirected/.style={Latex-Latex,dashed},
+    el/.style = {inner sep=2pt, align=left, sloped}
+}
+
+
+\makeatother
+
+
+
+
+
+
+%%%%%%%%%%%%%%% BEGINS DOCUMENT %%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title[Lecture 28]{Lecture 28: \\ Problem Set 3 Presentations}
+\subtitle{Big Data and Machine Learning for Applied Economics \\ Econ 4676}
+\date{\today}
+
+\author[Sarmiento-Barbieri]{Ignacio Sarmiento-Barbieri}
+\institute[Uniandes]{Universidad de los Andes}
+
+
+\begin{frame}[noframenumbering]
+\maketitle
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Announcements }
+
+
+\begin{itemize} 
+    \item  Problem Set 4 is posted
+    \bigskip
+    \item Course Perception Survey
+    \bigskip
+    \item  Final Exam Dates: 9/12 8am a 11/12 8am had 18 votes, now the question is can we move this to the weekend?
+    \bigskip
+    \begin{itemize} 
+    \item   10/12 2pm a 12/12 2pm
+    \bigskip
+    \item   10/12 8pm a 12/12 8pm
+    \bigskip
+    \item   11/12 8am a 13/12 8am
+    \end{itemize}
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Results }
+
+{\it ``measuring poverty is hard, time consuming, and expensive. By building better models, we can run surveys with fewer, more targeted questions that rapidly and cheaply measure the effectiveness of new policies and interventions. The more accurate our models, the more accurately we can target interventions and iterate on policies, maximizing the impact and cost-effectiveness of these strategies''}
+
+\begin{align}
+Score = f(False\,Positive\,Rate, False\,Negative\,Rate, log(Indp.\,\,Vars.))
+\end{align}
+
+\begin{itemize}
+\item False Positive Rate: Classified as Poor when it's not (over N)
+\item False Negative Rate: Classified as Not Poor when it is (over N)
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Results: Best Predictions }
+
+\begin{table}[!htbp] \centering 
+\scriptsize
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} llcccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Group & FN & FP & Indp. Vars. & score1  \\ 
+\hline \\[-1.8ex] 
+1 & gutierrez-cano-y-perea & $0.063$ & $0.041$ & $82$ & $0.105$   \\
+2 & cubillos-diaz-y-perez & $0.077$ & $0.049$ & $53$ & $0.126$    \\
+3 & mojica-noriega-y-porras & $0.091$ & $0.039$ & $9$ & $0.130$   \\
+4 & becerra-ochoa-y-roa & $0.085$ & $0.048$ & $19$ & $0.133$      \\
+5 & lopez-pardo-y-urdaneta & $0.107$ & $0.046$ & $21$ & $0.153$   \\
+6 & naranjo-pedraza-y-pulido & $0.130$ & $0.042$ & $13$ & $0.172$ \\
+7 & grandas-rios-y-rodriguez & $0.185$ & $0.026$ & $4$ & $0.212$  \\
+8 & gomez-gomez-y-palacio & $0.041$ & $0.220$ & $71$ & $0.261$    \\
+9 & aleatorio & $0.100$ & $0.402$ & $10,000$ & $0.502$            \\
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+\end{frame}
+%----------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Results: Best Overall Model }
+
+\begin{table}[!htbp] \centering 
+\scriptsize
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} llccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Group & FN & FP & Indp. Vars. & score1 & score\_final \\ 
+\hline \\[-1.8ex] 
+1 & mojica-noriega-y-porras & $0.091$ & $0.039$ & $9$ & $0.130$ & $4.777$ \\ 
+2 & becerra-ochoa-y-roa & $0.085$ & $0.048$ & $19$ & $0.133$ & $4.863$ \\ 
+3 & gutierrez-cano-y-perea & $0.063$ & $0.041$ & $82$ & $0.105$ & $4.882$ \\ 
+4 & cubillos-diaz-y-perez & $0.077$ & $0.049$ & $53$ & $0.126$ & $4.936$ \\ 
+5 & lopez-pardo-y-urdaneta & $0.107$ & $0.046$ & $21$ & $0.153$ & $4.964$ \\ 
+6 & naranjo-pedraza-y-pulido & $0.130$ & $0.042$ & $13$ & $0.172$ & $5.009$ \\ 
+7 & grandas-rios-y-rodriguez & $0.185$ & $0.026$ & $4$ & $0.212$ & $5.081$ \\ 
+8 & gomez-gomez-y-palacio & $0.041$ & $0.220$ & $71$ & $0.261$ & $5.622$ \\ 
+9 & aleatorio & $0.100$ & $0.402$ & $10,000$ & $0.502$ & $7.529$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+\end{frame}
+%----------------------------------------------------------------------% 
+
+
+%----------------------------------------------------------------------%
+%----------------------------------------------------------------------%
+\end{document}
+%----------------------------------------------------------------------%
+%----------------------------------------------------------------------%
+
