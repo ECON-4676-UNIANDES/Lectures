@@ -496,19 +496,6 @@ det(A) &= \Pi_{i=1}^m \lambda_i
 \end{itemize}
 \end{frame}
 
-%----------------------------------------------------------------------%
-\begin{frame}
-\frametitle{Factors via main components}
-
-\begin{itemize}
-\item Result: $\delta^*$ is the eigenvector corresponding to the largest eigenvalue of $\Sigma = V (X)$.
-\medskip
-\item $F^* = X\delta^*$ is the first principal component of $X$.
-\medskip
-
-\end{itemize}
-
-\end{frame}
 
 
 %----------------------------------------------------------------------%
@@ -521,15 +508,10 @@ det(A) &= \Pi_{i=1}^m \lambda_i
 \item Solution to the problem of the first principal component
 \item Problem: 
 \begin{align}
-\underset{\delta}{max}\,\, \delta' \Sigma \delta \\ \nonumber
-\text{subject to}  \\ \nonumber
-\delta' \delta = 1 \nonumber
+\underset{\delta}{max}\,\, \delta' \Sigma \delta \,\, \text{  s.t.}  \,\, \delta' \delta = 1 \nonumber
 \end{align}
-\item Seting up the Lagrangian
+\item Seting up the Lagrangian $$\mathcal{L}(\delta,\lambda) = \delta' \Sigma \delta + \lambda(1-\delta'\delta)$$
 
-\begin{align}
-\mathcal{L}(\delta,\lambda) = \delta' \Sigma \delta + \lambda(1-\delta'\delta)
-\end{align}
 \item CPO
 
 \begin{align}
@@ -541,7 +523,7 @@ det(A) &= \Pi_{i=1}^m \lambda_i
 \begin{align}
 \delta \Sigma \delta = \lambda
 \end{align}
-
+\footnotesize
 \item In order to maximize $\delta \Sigma \delta $ we must choose $\lambda$ equal to the maximum eigenvalue of $\Sigma$ and $\delta$ is the corresponding eigenvalue.
 \end{itemize}
 \end{frame}
@@ -564,7 +546,7 @@ det(A) &= \Pi_{i=1}^m \lambda_i
  min \sum (y_i-\hat{y})^2
  \end{align}
 
-\item Learning is supervised: the difference between $y$ and $\hat y$ ``guides' the learning.
+\item Learning is supervised: the difference between $y$ and $\hat y$ ``guides'' the learning.
 \end{itemize}
 \item  The factor construction problem is unsupervised: we construct an index (the factor) without ever seeing it.
 \begin{itemize}
@@ -588,7 +570,8 @@ F^*_{n\times 1} = X\delta^*
 
 \begin{itemize}
 
-\item The first main component? There's others?
+\item The first main component? Are there others?
+
 \item Let's consider the following problem:
 \begin{align}
 \underset{\delta_2}{max}\,\, \delta_2' \Sigma \delta_2 \\ \nonumber
@@ -611,7 +594,9 @@ orthogonal to the best initial linear combination.
 
 \begin{itemize}
 \item Let $\lambda_1,\dots,\lambda_K$ be the eigenvalues of $\Sigma = V(X)$, ordered from highest to lowest, and $p_1 , \dots , p_K$ the corresponding eigenvectors. Let us call $P$ the matrix of eigenvectors.
+\medskip
 \item Result: $\delta_j = p_j$ , $\forall j$ ('loadings' of the principal components =ordered eigenvectors of $\Sigma$).
+\medskip
 \item Let $F_j = X \delta_j$ , $j = 1, \dots, K$ be the j-th principal component. It's easy to see that
 \begin{align}
 V (F_j ) = \delta'_j \Sigma \delta_j = p_j P\Lambda P p_j = \lambda_j
@@ -652,9 +637,9 @@ trace(\Sigma) = trace(P \Lambda P')= trace(PP' \Lambda ) = \sum_{j=1}^K \lambda_
 \begin{itemize}
 
 
-\item Look at the importance of the first major components. If the first one explains a lot, there is really only one dimension (one dimension explains almost everything).
+\item Look at the importance of the first principal components. If the first one explains a lot, there is really only one dimension (one dimension explains almost everything).
 \bigskip
-\item The coefficients of the eigenvectors are weights. See how each of the variables 'participate' in each leading coefficient.
+\item The coefficients of the eigenvectors are weights. See how each of the variables 'contributes' in each factor.
 \bigskip
 \item Beware of differences in scale. Always standardize 
 \end{itemize}
@@ -945,36 +930,37 @@ trace(\Sigma) =  \sum_{j=1}^K V(F_j) = K
 \end{frame}
 %----------------------------------------------------------------------%
 \begin{frame}[fragile]
-\frametitle{Factor Interpretation}
+\frametitle{Principal Component Regression}
+
+
+\begin{itemize}
 
 
 
-{\bf \theme PCR: \bk Principal Component Regression}
 
-\vskip .25cm
-The concept is very simple: instead of regressing onto $\bm{x}$, use
-a lower dimension set of principal components $\bm{z}$ as covariates.
+\item The concept is very simple: instead of regressing onto $X$, use a lower dimension set of principal components $F$ as covariates.
 
-\vskip .25cm
-This works well for a few reasons:
+\medskip
+\item This works well for a few reasons:
 \begin{itemize}
 \item PCA reduces dimension, which is always good.
-\item Higher variance covariates are good in regression, \\and we choose
+\item Higher variance covariates are good in regression, and we choose
   the top PCs to have highest variance.
 \item The PCs are independent: no multicollinearity.
 \end{itemize}
 
-\vskip .25cm
-The 2-stage algorithm is straightforward.
-For example,
+
+\item The 2-stage algorithm is straightforward. For example,
 
 {\nv 
-\begin{semiverbatim}\vspace{-.25cm}\small
+\begin{semiverbatim}\vspace{.25cm}\small
          mypca = prcomp(X, scale=TRUE)
          z = predict(mypca)[,1:K]
          reg = glm(y~., data=as.data.frame(z))
 \end{semiverbatim}
 }
+
+\end{itemize}
 
 
 \end{frame}
