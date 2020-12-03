@@ -217,7 +217,7 @@
     \bigskip
     \item  Final Exam Date will be Friday Dec 11 8am to Sunday 13 8am
     \bigskip
-    \item  Remember to turn in your project proposal by December 7
+    \item  Remember to turn in your project proposal by December 7. Please submit it to Github the link is \url{https://classroom.github.com/g/f9hFSKoM}
     
 \end{itemize}
 \end{frame}
@@ -445,9 +445,9 @@ y = X\beta + \iota \alpha
 0
 \end{array}\right)X=\left(\begin{array}{cc}
 0 & 0\\
-0 & 0\\
+0 &1\\
 1 & 0\\
-1 & 0
+1 & 1
 \end{array}\right)\iota=\left(\begin{array}{c}
 1\\
 1\\
@@ -542,7 +542,7 @@ layer is still just a linear regression model, but now it is applied to $h$ rath
     \begin{itemize}
     \item Clearly {\bf not} linear, otherwise it would defeat the entire purpose
     \item We are going to use the rectified linear unit or ReLU (it is usually the default recommendation, there are many others (more on this later))
-    \item ReLU is defined as $g(z)=max{0,z}$
+    \item ReLU is defined as $g(z)=max\{0,z\}$
     \end{itemize}
     
     \item For $f^{(2)}$? For this example, a linear model will suffice 
@@ -947,11 +947,7 @@ $$\frac{d}{dx} \operatorname{tanh}(x) = 1 - \operatorname{tanh}^2(x).$$
               \includegraphics[scale=0.45]{figures/tanh_dev}
               
  \end{figure}
-In summary, we now know how to incorporate nonlinearities to build expressive multilayer neural network architectures. As a side note, your knowledge already puts you in command of a similar toolkit to a practitioner circa 1990. In some ways, you have an advantage over anyone working in the 1990s, because you can leverage powerful open-source deep learning frameworks to build models rapidly, using only a few lines of code. Previously, training these networks required researchers to code up thousands of lines of C and Fortran.
-Summary
 
-    MLP adds one or multiple fully-connected hidden layers between the output and input layers and transforms the output of the hidden layer via an activation function.
-    Commonly-used activation functions include the ReLU function, the sigmoid function, and the tanh function.
 
 
 \end{frame}
@@ -966,11 +962,11 @@ Summary
 \begin{itemize}
 \item $h=cos(W x+b)$ Goodfellow et all (2016) claim that on the MNIST dataset they obtained an error rate of less than 1 percent
 \medskip
-\item Radial basis function (RBF) $exp\left( \frac{1}{\sigma^2)}||W-x||^2 \right)$
+\item Radial basis function (RBF): $exp\left( \frac{1}{\sigma^2)}||W-x||^2 \right)$
 \medskip
-\item Softplus $log(1+e^x)$
+\item Softplus: $log(1+e^x)$
 \medskip
-\item Hard $tanh$ $max(-1,min(1,x)$
+\item Hard tanh: $max(-1,min(1,x))$
 \medskip
 \end{itemize}
 \item Hidden unit design remains an active area of research, and many useful hidden unit types remain to be discovered
